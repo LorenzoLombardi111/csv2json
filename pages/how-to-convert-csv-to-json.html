@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Convert CSV to JSON — Step-by-Step Guide</title>
+    <meta name="description" content="How to convert CSV to JSON free, step by step. Pick delimiter, handle headers, choose output shape, copy or download — all in your browser.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://freecsv2json.app/pages/how-to-convert-csv-to-json.html">
+    <meta name="theme-color" content="#faf9f6">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta property="og:title" content="How to Convert CSV to JSON — Step-by-Step Guide">
+    <meta property="og:description" content="How to convert CSV to JSON free, step by step. Pick delimiter, handle headers, choose output shape, copy or download — all in your browser.">
+    <meta property="og:image" content="https://freecsv2json.app/og-image.svg">
+    <meta property="og:url" content="https://freecsv2json.app/pages/how-to-convert-csv-to-json.html">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="How to Convert CSV to JSON — Step-by-Step Guide">
+    <meta name="twitter:description" content="How to convert CSV to JSON free, step by step. Pick delimiter, handle headers, choose output shape, copy or download — all in your browser.">
+    <meta name="twitter:image" content="https://freecsv2json.app/og-image.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "How to convert CSV to JSON with freecsv2json.app",
+        "description": "Step-by-step guide to converting CSV to JSON in the browser using freecsv2json.app.",
+        "step": [
+            { "@type": "HowToStep", "name": "Open freecsv2json.app", "text": "Navigate to https://freecsv2json.app/ in any modern browser." },
+            { "@type": "HowToStep", "name": "Paste your CSV", "text": "Click into the left pane and paste with Ctrl+V or Cmd+V. You can also drag a .csv file onto the pane." },
+            { "@type": "HowToStep", "name": "Pick the right delimiter", "text": "Change the Delimiter dropdown to comma, semicolon, tab, pipe, or a custom character as needed." },
+            { "@type": "HowToStep", "name": "Decide about the header row", "text": "Leave Header row checked if the first row has column names. Uncheck it for headerless data." },
+            { "@type": "HowToStep", "name": "Choose the output shape", "text": "Pick Array of objects or Array of arrays, and toggle Pretty on for human-readable output." },
+            { "@type": "HowToStep", "name": "Copy or download", "text": "Click Copy to put the JSON on your clipboard, or Download to save it as a .json file." }
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "How to Convert CSV to JSON — Step-by-Step Guide",
+        "description": "How to convert CSV to JSON free, step by step. Pick delimiter, handle headers, choose output shape, copy or download — all in your browser.",
+        "url": "https://freecsv2json.app/pages/how-to-convert-csv-to-json.html",
+        "publisher": { "@type": "Organization", "name": "freecsv2json.app", "url": "https://freecsv2json.app/" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "How long does CSV to JSON conversion take?", "acceptedAnswer": { "@type": "Answer", "text": "For most files (under 1 MB), instantly. For a 10 MB file, a second or two. The UI debounces input by 150 ms so rapid typing doesn't recompute on every keystroke." }},
+            { "@type": "Question", "name": "Can I batch-convert many CSV files?", "acceptedAnswer": { "@type": "Answer", "text": "Not in the current free version. The planned Pro tier adds bulk upload and API access for automated pipelines." }},
+            { "@type": "Question", "name": "What if my CSV has different numbers of columns per row?", "acceptedAnswer": { "@type": "Answer", "text": "freecsv2json.app preserves whatever's there — short rows become objects with fewer keys filled in, long rows retain their extra values. No rows are dropped." }},
+            { "@type": "Question", "name": "Is freecsv2json.app a good fit for GDPR or HIPAA-sensitive data?", "acceptedAnswer": { "@type": "Answer", "text": "The tool performs no uploads and no server-side processing, which reduces the data-leakage attack surface compared to server-side converters. Consult your compliance officer for authoritative guidance." }},
+            { "@type": "Question", "name": "Can I undo a conversion?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — your input stays in the left pane. To recover after closing the tab, your last input (up to 100 KB) is auto-saved to your browser's localStorage and restored on next visit." }},
+            { "@type": "Question", "name": "What about CSV to JSON to CSV round trips?", "acceptedAnswer": { "@type": "Answer", "text": "Use the Swap button to move the output into the input and flip direction. If your CSV has unusual quoting or line endings, the round-tripped CSV may differ in formatting but should be semantically identical." }}
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freecsv2json.app/" },
+            { "@type": "ListItem", "position": 2, "name": "How to Convert CSV to JSON", "item": "https://freecsv2json.app/pages/how-to-convert-csv-to-json.html" }
+        ]
+    }
+    </script>
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg:#faf9f6; --surface:#f4f2ee; --border:#e8e4dd; --text-primary:#1a1917; --text-secondary:#6b6760; --text-muted:#9e9b96; --accent:#C49A2A; --accent-hover:#A8831F; --accent-text:#ffffff; --shadow:0 1px 3px rgba(0,0,0,0.06),0 2px 8px rgba(0,0,0,0.04); --font-body:'Lora',serif; --font-ui:'DM Sans',sans-serif; --font-mono:'JetBrains Mono',monospace; }
+        html.dark { --bg:#141412; --surface:#1e1c1a; --border:#2e2b27; --text-primary:#f0ede8; --text-secondary:#9e9b96; --text-muted:#6b6760; --accent:#D4A835; --accent-hover:#C49A2A; --accent-text:#ffffff; --shadow:0 1px 3px rgba(0,0,0,0.3),0 2px 8px rgba(0,0,0,0.2); }
+        html { font-size:15px; line-height:1.6; }
+        body { font-family:var(--font-body); background:var(--bg); color:var(--text-primary); }
+        .header { height:52px; display:flex; align-items:center; justify-content:space-between; padding:0 16px; border-bottom:1px solid var(--border); background:var(--bg); position:sticky; top:0; z-index:100; }
+        .header-brand { font-family:var(--font-ui); font-size:15px; font-weight:600; color:var(--accent); text-decoration:none; }
+        .theme-toggle { font-family:var(--font-ui); font-size:13px; background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:6px 12px; cursor:pointer; color:var(--text-secondary); transition:all 0.15s ease; }
+        .theme-toggle:hover { background:var(--border); }
+        .breadcrumb { font-family:var(--font-ui); font-size:12px; color:var(--text-muted); padding:12px 24px; max-width:800px; margin:0 auto; }
+        .breadcrumb a { color:var(--accent); text-decoration:none; }
+        .landing-content { max-width:800px; margin:0 auto; padding:32px 24px 64px; }
+        .landing-content h1 { font-size:32px; font-weight:700; margin-bottom:24px; line-height:1.3; }
+        .landing-content h2 { font-size:22px; font-weight:600; margin-top:32px; margin-bottom:12px; }
+        .landing-content h3 { font-size:17px; font-weight:600; margin-top:20px; margin-bottom:8px; }
+        .landing-content p { color:var(--text-secondary); margin-bottom:16px; line-height:1.7; }
+        .landing-content ol, .landing-content ul { margin: 0 0 16px 24px; color:var(--text-secondary); }
+        .landing-content li { margin-bottom:6px; line-height:1.7; }
+        .landing-content code { font-family:var(--font-mono); font-size:13px; background:var(--surface); padding:2px 6px; border-radius:4px; }
+        .cta-box { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:32px; text-align:center; margin:32px 0; }
+        .cta-box h3 { font-family:var(--font-ui); font-size:18px; font-weight:600; margin-bottom:12px; margin-top:0; }
+        .cta-box p { color:var(--text-muted); margin-bottom:16px; }
+        .cta-btn { font-family:var(--font-ui); font-size:15px; font-weight:600; background:var(--accent); color:var(--accent-text); border:none; border-radius:8px; padding:12px 24px; cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.15s ease; }
+        .cta-btn:hover { background:var(--accent-hover); }
+        details { border:1px solid var(--border); border-radius:8px; padding:16px; margin-bottom:8px; }
+        summary { font-family:var(--font-ui); font-weight:500; cursor:pointer; }
+        details p { margin-top:12px; margin-bottom:0; }
+        .related-tools { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; margin:24px 0; }
+        .related-tool-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; transition:all 0.15s ease; }
+        .related-tool-card:hover { box-shadow:var(--shadow); }
+        .related-tool-card .tool-name { font-family:var(--font-ui); font-size:13px; font-weight:600; color:var(--accent); }
+        .related-tool-card .tool-desc { font-family:var(--font-ui); font-size:12px; color:var(--text-muted); margin-top:4px; }
+        .landing-footer { text-align:center; padding:32px 24px; font-family:var(--font-ui); font-size:12px; color:var(--text-muted); border-top:1px solid var(--border); }
+        .more-tools { margin-top:24px; }
+        .more-tools-label { font-family:var(--font-ui); font-size:11px; font-weight:500; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px; }
+        .more-tools-links { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+        .more-tools-links a { font-family:var(--font-ui); font-size:12px; color:var(--accent); text-decoration:none; padding:4px 10px; border:1px solid var(--border); border-radius:6px; }
+        .more-tools-links a:hover { background:var(--surface); }
+        .suite-badge { position:fixed; bottom:16px; right:16px; font-family:var(--font-ui); font-size:11px; color:var(--text-muted); text-decoration:none; }
+        @media (max-width: 768px) { .landing-content h1 { font-size:24px; } .landing-content { padding:24px 16px 48px; } .suite-badge .badge-prefix { display:none; } }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <a href="/" class="header-brand">freecsv2json.app</a>
+    <button class="theme-toggle" id="themeToggle">☀️</button>
+</header>
+
+<nav class="breadcrumb">
+    <a href="/">Home</a> › How to Convert CSV to JSON
+</nav>
+
+<article class="landing-content">
+    <h1>How to Convert CSV to JSON — A Complete Step-by-Step Guide</h1>
+
+    <p>Converting CSV to JSON sounds simple — one format to another — but real-world CSV files have quirks that trip up naive converters: embedded commas, quoted fields, custom delimiters, different line endings, and missing or extra columns. This guide walks through the full process on freecsv2json.app.</p>
+
+    <h2>Step 1: Open freecsv2json.app</h2>
+    <p>Navigate to <a href="/">freecsv2json.app</a>. The tool loads instantly because it's a static single-page app. No login, no onboarding.</p>
+
+    <h2>Step 2: Paste your CSV</h2>
+    <p>Click into the left pane (the "CSV Input" area) and paste your data with Ctrl+V or Cmd+V. Alternatively, drag a <code>.csv</code> file anywhere onto that pane to load it, or click "Open file…" to pick one from your device. As soon as you paste, freecsv2json.app auto-detects that the content is CSV (since it doesn't start with <code>[</code> or <code>{</code>) and sets the mode to CSV → JSON.</p>
+
+    <h2>Step 3: Pick the right delimiter</h2>
+    <p>Most CSV files use commas. If your file uses something else (semicolon, tab, pipe), change the "Delimiter" dropdown. European Excel exports typically use semicolons. Tab-separated data (TSV) uses tabs. If your file uses a delimiter not in the preset list, pick "custom…" and type the character into the small box that appears.</p>
+
+    <h2>Step 4: Decide about the header row</h2>
+    <p>By default, "Header row" is checked — freecsv2json.app treats the first row of your CSV as column names. The resulting JSON is an array of objects, each keyed by those names. If your CSV has no header (just data from row 1), uncheck "Header row" — you'll get an array of arrays in that case.</p>
+
+    <h2>Step 5: Choose the output shape</h2>
+    <p>The "Output" dropdown picks between "Array of objects" (default, each record keyed by header) and "Array of arrays" (each record as a positional array). The "Pretty" checkbox toggles between human-readable 2-space indentation and compact minified output.</p>
+
+    <h2>Step 6: Review the result</h2>
+    <p>The right pane updates live as you change options. Scroll through to verify the JSON looks right. At the bottom, the status bar shows row count, column count, and input size.</p>
+
+    <h2>Step 7: Copy or download</h2>
+    <p>Click "Copy" at the top of the output pane to put the JSON on your clipboard, or "Download" to save it as a <code>.json</code> file. Done.</p>
+
+    <h2>Troubleshooting common issues</h2>
+    <ul>
+        <li><strong>"I see one weird row at the end."</strong> Your CSV probably has a trailing newline. freecsv2json.app drops fully-empty trailing rows automatically; if you still see one, check for whitespace.</li>
+        <li><strong>"My quoted field shows quotes in the JSON."</strong> Quotes <em>around</em> a field are CSV syntax and get stripped. Quotes <em>inside</em> a field must be escaped as <code>""</code> per RFC 4180, which freecsv2json.app unescapes to a single <code>"</code> in the output.</li>
+        <li><strong>"Numbers are strings in my JSON."</strong> Intentional. Type coercion is context-specific and belongs in your code, not the converter.</li>
+        <li><strong>"A row has fewer columns than others."</strong> That row's missing fields become empty strings in the JSON (or missing keys if you use array of arrays). Nothing is silently dropped.</li>
+        <li><strong>"Parse error on a specific line."</strong> The error panel shows the reason, usually an unterminated quote. Find the closing <code>"</code> for any opening <code>"</code> in your CSV and the error should go away.</li>
+    </ul>
+
+    <div class="cta-box">
+        <h3>Try freecsv2json.app — Free, No Sign-Up</h3>
+        <p>Paste CSV, see valid JSON in real time. All processing happens in your browser.</p>
+        <a href="/" class="cta-btn">Open CSV to JSON →</a>
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>How long does CSV to JSON conversion take?</summary><p>For most files (under 1 MB), instantly. For a 10 MB file, a second or two. The UI debounces input by 150 ms so rapid typing doesn't recompute on every keystroke.</p></details>
+    <details><summary>Can I batch-convert many CSV files?</summary><p>Not in the current free version. The planned Pro tier adds bulk upload and API access for automated pipelines.</p></details>
+    <details><summary>What if my CSV has different numbers of columns per row?</summary><p>freecsv2json.app preserves whatever's there — short rows become objects with fewer keys filled in, long rows retain their extra values. No rows are dropped.</p></details>
+    <details><summary>Is freecsv2json.app a good fit for GDPR or HIPAA-sensitive data?</summary><p>The tool performs no uploads and no server-side processing, which reduces the data-leakage attack surface compared to server-side converters. Consult your compliance officer for authoritative guidance.</p></details>
+    <details><summary>Can I undo a conversion?</summary><p>Yes — your input stays in the left pane. To recover after closing the tab, your last input (up to 100 KB) is auto-saved to your browser's localStorage and restored on next visit.</p></details>
+    <details><summary>What about CSV to JSON to CSV round trips?</summary><p>Use the Swap button to move the output into the input and flip direction. If your CSV has unusual quoting or line endings, the round-tripped CSV may differ in formatting but should be semantically identical.</p></details>
+
+    <h2>More Free Tools from Freesuite</h2>
+    <div class="related-tools">
+        <a href="https://freejsonformatter.app" class="related-tool-card"><div class="tool-name">freejsonformatter.app</div><div class="tool-desc">Validate and pretty-print JSON</div></a>
+        <a href="https://freesheets.app" class="related-tool-card"><div class="tool-name">freesheets.app</div><div class="tool-desc">Full spreadsheet editor</div></a>
+        <a href="https://freediffchecker.app" class="related-tool-card"><div class="tool-name">freediffchecker.app</div><div class="tool-desc">Compare two text blocks</div></a>
+        <a href="https://freewordcounter.app" class="related-tool-card"><div class="tool-name">freewordcounter.app</div><div class="tool-desc">Word counter</div></a>
+    </div>
+</article>
+
+<footer class="landing-footer">
+    &copy; freecsv2json.app
+    <div class="more-tools">
+        <div class="more-tools-label">More free tools from Freesuite</div>
+        <div class="more-tools-links">
+            <a href="https://freejsonformatter.app">JSON Formatter</a>
+            <a href="https://freesheets.app">Spreadsheets</a>
+            <a href="https://freesqlformatter.app">SQL Formatter</a>
+            <a href="https://freebase64.app">Base64</a>
+            <a href="https://freeregextester.app">Regex Tester</a>
+            <a href="https://freediffchecker.app">Diff Checker</a>
+            <a href="https://freecodebeautify.app">Code Beautifier</a>
+        </div>
+    </div>
+</footer>
+
+<a href="https://freesuite.app" class="suite-badge" target="_blank" rel="noopener">
+    <span class="badge-prefix">by </span>freesuite.app
+</a>
+
+<script>
+(() => {
+    const toggle = document.getElementById('themeToggle');
+    const getTheme = () => localStorage.getItem('suite_theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const apply = (t) => { document.documentElement.classList.toggle('dark', t === 'dark'); toggle.textContent = t === 'dark' ? '🌙' : '☀️'; localStorage.setItem('suite_theme', t); };
+    apply(getTheme());
+    toggle.addEventListener('click', () => apply(document.documentElement.classList.contains('dark') ? 'light' : 'dark'));
+})();
+</script>
+</body>
+</html>

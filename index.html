@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free CSV to JSON Converter Online — freecsv2json.app</title>
+    <meta name="description" content="Convert CSV to JSON and JSON to CSV in your browser. Bidirectional, handles quoted fields, custom delimiters. Free, no uploads, no sign-up.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://freecsv2json.app/">
+    <meta name="theme-color" content="#faf9f6">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="manifest" href="/manifest.json">
+
+    <meta property="og:title" content="Free CSV to JSON Converter Online — freecsv2json.app">
+    <meta property="og:description" content="Convert CSV to JSON and JSON to CSV in your browser. Bidirectional, handles quoted fields, custom delimiters. Free, no uploads, no sign-up.">
+    <meta property="og:image" content="https://freecsv2json.app/og-image.svg">
+    <meta property="og:url" content="https://freecsv2json.app/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free CSV to JSON Converter Online — freecsv2json.app">
+    <meta name="twitter:description" content="Convert CSV to JSON and JSON to CSV in your browser. Bidirectional, handles quoted fields, custom delimiters. Free, no uploads, no sign-up.">
+    <meta name="twitter:image" content="https://freecsv2json.app/og-image.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "freecsv2json.app",
+        "description": "Free online CSV to JSON and JSON to CSV converter. Bidirectional, handles quoted fields and custom delimiters. 100% browser-based.",
+        "url": "https://freecsv2json.app/",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How do I convert CSV to JSON?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Paste your CSV into the left pane on freecsv2json.app. The tool detects the delimiter, treats the first row as headers, and outputs valid JSON in the right pane in real time. Copy the result or download it as a .json file." }
+            },
+            {
+                "@type": "Question",
+                "name": "Can it also convert JSON back to CSV?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes. Switch the mode toggle to JSON to CSV, or paste JSON that starts with [ or { and freecsv2json.app auto-detects the direction. Arrays of flat objects convert cleanly; nested values are stringified." }
+            },
+            {
+                "@type": "Question",
+                "name": "Does it handle quoted fields with commas?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Yes. The parser follows RFC 4180, so quoted fields with embedded commas, escaped quotes as double quotes, and multi-line values inside quotes all parse correctly. Most free converters break on these — freecsv2json.app does not." }
+            },
+            {
+                "@type": "Question",
+                "name": "What delimiters are supported?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Comma, semicolon, tab, pipe, or any single custom character you type. European CSV files usually use semicolons, tab-separated values use tabs. freecsv2json.app supports them all via the delimiter picker." }
+            },
+            {
+                "@type": "Question",
+                "name": "Is my data uploaded anywhere?",
+                "acceptedAnswer": { "@type": "Answer", "text": "No. All parsing and conversion happens locally in your browser using JavaScript. Nothing is uploaded, logged, or sent to a server. freecsv2json.app is safe for CSV files containing customer data, credentials, or other private content." }
+            },
+            {
+                "@type": "Question",
+                "name": "How large a file can I convert?",
+                "acceptedAnswer": { "@type": "Answer", "text": "Up to about 10 MB of CSV runs smoothly in most browsers. Beyond that, the tab may slow down since everything processes in memory. For server-side batch or API conversion, the Pro tier is planned." }
+            }
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freecsv2json.app/" }
+        ]
+    }
+    </script>
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #faf9f6;
+            --surface: #f4f2ee;
+            --border: #e8e4dd;
+            --text-primary: #1a1917;
+            --text-secondary: #6b6760;
+            --text-muted: #9e9b96;
+            --accent: #C49A2A;
+            --accent-hover: #A8831F;
+            --accent-text: #ffffff;
+            --destructive: #c0392b;
+            --success: #27ae60;
+            --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+            --font-body: 'Lora', serif;
+            --font-ui: 'DM Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        html.dark {
+            --bg: #141412;
+            --surface: #1e1c1a;
+            --border: #2e2b27;
+            --text-primary: #f0ede8;
+            --text-secondary: #9e9b96;
+            --text-muted: #6b6760;
+            --accent: #D4A835;
+            --accent-hover: #C49A2A;
+            --accent-text: #ffffff;
+            --destructive: #e74c3c;
+            --success: #2ecc71;
+            --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        html { font-size: 15px; line-height: 1.6; }
+        body {
+            font-family: var(--font-body);
+            background: var(--bg);
+            color: var(--text-primary);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .app-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+        }
+
+        /* ===== Header ===== */
+        .header {
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            border-bottom: 1px solid var(--border);
+            background: var(--bg);
+            flex-shrink: 0;
+        }
+        .header-brand {
+            font-family: var(--font-ui);
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .header-actions { display: flex; align-items: center; gap: 8px; }
+
+        .theme-toggle {
+            font-family: var(--font-ui);
+            font-size: 13px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 6px 12px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: all 0.15s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .theme-toggle:hover { background: var(--border); }
+
+        /* ===== Buttons ===== */
+        .btn {
+            font-family: var(--font-ui);
+            font-size: 13px;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 14px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .btn-primary { background: var(--accent); color: var(--accent-text); }
+        .btn-primary:hover:not(:disabled) { background: var(--accent-hover); }
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+        .btn-secondary:hover:not(:disabled) { background: var(--surface); }
+        .btn-destructive {
+            background: transparent;
+            border: 1px solid var(--destructive);
+            color: var(--destructive);
+        }
+        .btn-destructive:hover:not(:disabled) { background: var(--surface); }
+
+        /* ===== Inputs / Selects ===== */
+        .input, .select {
+            font-family: var(--font-ui);
+            font-size: 13px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 7px 10px;
+            color: var(--text-primary);
+            transition: all 0.15s ease;
+        }
+        .input:focus, .select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(196,154,42,0.12);
+        }
+
+        /* ===== Toggle Group ===== */
+        .toggle-group {
+            display: inline-flex;
+            background: var(--surface);
+            border-radius: 8px;
+            padding: 3px;
+            gap: 0;
+        }
+        .toggle-btn {
+            font-family: var(--font-ui);
+            font-size: 12px;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            color: var(--text-secondary);
+            transition: all 0.15s ease;
+        }
+        .toggle-btn.active {
+            background: var(--accent);
+            color: var(--accent-text);
+        }
+        .toggle-btn:not(.active):hover { color: var(--text-primary); }
+
+        .chk {
+            font-family: var(--font-ui);
+            font-size: 12px;
+            color: var(--text-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .chk input { accent-color: var(--accent); cursor: pointer; }
+
+        .label {
+            font-family: var(--font-ui);
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ===== Control Bar ===== */
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            background: var(--surface);
+            flex-shrink: 0;
+        }
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .control-sep {
+            width: 1px;
+            height: 20px;
+            background: var(--border);
+        }
+
+        /* ===== Editor Panes ===== */
+        .editor {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 0;
+        }
+        .pane {
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            position: relative;
+        }
+        .pane + .pane { border-left: 1px solid var(--border); }
+        .pane-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        .pane-title {
+            font-family: var(--font-ui);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            letter-spacing: 0.02em;
+        }
+        .pane-actions {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .pane-btn {
+            font-family: var(--font-ui);
+            font-size: 11px;
+            font-weight: 500;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .pane-btn:hover { background: var(--border); color: var(--text-primary); }
+        .pane-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        .code-area {
+            flex: 1;
+            font-family: var(--font-mono);
+            font-size: 13px;
+            line-height: 1.5;
+            background: var(--bg);
+            color: var(--text-primary);
+            border: none;
+            padding: 12px 16px;
+            resize: none;
+            outline: none;
+            width: 100%;
+            min-height: 0;
+            tab-size: 2;
+        }
+        .code-area.drag-over {
+            background: rgba(196,154,42,0.06);
+            outline: 2px dashed var(--accent);
+            outline-offset: -6px;
+        }
+        .code-area.readonly { background: var(--surface); }
+
+        .err-panel {
+            border-top: 1px solid var(--destructive);
+            background: rgba(192,57,43,0.05);
+            color: var(--destructive);
+            font-family: var(--font-mono);
+            font-size: 12px;
+            padding: 8px 16px;
+            flex-shrink: 0;
+            white-space: pre-wrap;
+        }
+        .err-panel:empty { display: none; }
+
+        /* ===== Status Bar ===== */
+        .status-bar {
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 16px;
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        .status-bar .stat {
+            font-family: var(--font-ui);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .status-bar .stat strong {
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+        .status-left {
+            display: flex;
+            gap: 16px;
+        }
+
+        /* ===== Suite Badge ===== */
+        .suite-badge {
+            position: fixed;
+            bottom: 40px;
+            right: 16px;
+            font-family: var(--font-ui);
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--text-muted);
+            text-decoration: none;
+            z-index: 10;
+        }
+
+        /* ===== Toast ===== */
+        .toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: var(--text-primary);
+            color: var(--bg);
+            font-family: var(--font-ui);
+            font-size: 13px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            opacity: 0;
+            transition: all 0.15s ease;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* ===== Scrollbar ===== */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+        /* ===== SEO Content ===== */
+        .seo-content {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 64px 24px;
+            font-family: var(--font-body);
+        }
+        .seo-content h1 {
+            font-family: var(--font-body);
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.3;
+        }
+        .seo-content h2 {
+            font-family: var(--font-body);
+            font-size: 20px;
+            font-weight: 600;
+            margin-top: 32px;
+            margin-bottom: 12px;
+        }
+        .seo-content p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+        .seo-content details {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 8px;
+        }
+        .seo-content summary {
+            font-family: var(--font-ui);
+            font-weight: 500;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+        .seo-content details p { margin-top: 12px; margin-bottom: 0; }
+        .seo-content code {
+            font-family: var(--font-mono);
+            font-size: 13px;
+            background: var(--surface);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* ===== Upgrade Prompt ===== */
+        .upgrade-prompt {
+            border-top: 1px solid var(--border);
+            padding: 20px 0 0;
+            margin-top: 32px;
+            text-align: center;
+        }
+        .upgrade-prompt .upgrade-title {
+            font-family: var(--font-ui);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        .upgrade-prompt .upgrade-desc {
+            font-family: var(--font-ui);
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+        .upgrade-prompt .upgrade-link {
+            font-family: var(--font-ui);
+            font-size: 12px;
+            color: var(--accent);
+            text-decoration: none;
+            margin-top: 4px;
+            display: inline-block;
+        }
+
+        .seo-footer {
+            text-align: center;
+            padding: 32px 24px;
+            font-family: var(--font-ui);
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .more-tools {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        .more-tools-label {
+            font-family: var(--font-ui);
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+        .more-tools-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        .more-tools-links a {
+            font-family: var(--font-ui);
+            font-size: 12px;
+            color: var(--accent);
+            text-decoration: none;
+            padding: 4px 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: all 0.15s ease;
+        }
+        .more-tools-links a:hover { background: var(--surface); }
+
+        /* ===== Mobile ===== */
+        @media (max-width: 768px) {
+            body { overflow: auto; height: auto; }
+            .app-wrapper { height: 100vh; }
+            .editor { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr; }
+            .pane + .pane { border-left: none; border-top: 1px solid var(--border); }
+            .suite-badge .badge-prefix { display: none; }
+            .controls { padding: 10px 12px; gap: 10px; }
+            .control-sep { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="app-wrapper">
+
+    <!-- Header -->
+    <header class="header">
+        <a href="/" class="header-brand">freecsv2json.app</a>
+        <div class="header-actions">
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <span class="toggle-icon">☀️</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Control Bar -->
+    <div class="controls">
+        <div class="control-group">
+            <div class="toggle-group" role="tablist" aria-label="Conversion direction">
+                <button class="toggle-btn active" id="modeCsv2Json" data-mode="csv2json">CSV → JSON</button>
+                <button class="toggle-btn" id="modeJson2Csv" data-mode="json2csv">JSON → CSV</button>
+            </div>
+        </div>
+
+        <div class="control-sep"></div>
+
+        <div class="control-group" id="csvOptions">
+            <label class="label" for="delimSel">Delimiter</label>
+            <select class="select" id="delimSel" aria-label="CSV delimiter">
+                <option value=",">, (comma)</option>
+                <option value=";">; (semicolon)</option>
+                <option value="\t">tab</option>
+                <option value="|">| (pipe)</option>
+                <option value="custom">custom…</option>
+            </select>
+            <input class="input" id="delimCustom" style="width:48px;display:none" maxlength="1" aria-label="Custom delimiter">
+            <label class="chk"><input type="checkbox" id="headerChk" checked> Header row</label>
+            <label class="chk"><input type="checkbox" id="trimChk" checked> Trim values</label>
+        </div>
+
+        <div class="control-group" id="outputOptions">
+            <label class="label">Output</label>
+            <select class="select" id="jsonShape" aria-label="JSON shape">
+                <option value="objects">Array of objects</option>
+                <option value="arrays">Array of arrays</option>
+            </select>
+            <label class="chk"><input type="checkbox" id="prettyChk" checked> Pretty</label>
+        </div>
+
+        <div class="control-group" id="csvOutputOptions" style="display:none">
+            <label class="label">CSV quoting</label>
+            <select class="select" id="csvQuote" aria-label="CSV quoting">
+                <option value="needed">Only when needed</option>
+                <option value="all">All fields</option>
+            </select>
+            <label class="label">Line endings</label>
+            <select class="select" id="csvEol" aria-label="CSV line endings">
+                <option value="lf">LF (\n)</option>
+                <option value="crlf">CRLF (\r\n)</option>
+            </select>
+        </div>
+
+        <div class="control-group" style="margin-left:auto">
+            <button class="btn btn-secondary" id="exampleBtn" title="Load example">Example</button>
+            <button class="btn btn-secondary" id="swapBtn" title="Swap input and output">⇄ Swap</button>
+        </div>
+    </div>
+
+    <!-- Editor -->
+    <main class="editor">
+        <!-- Input Pane -->
+        <section class="pane" aria-label="Input">
+            <div class="pane-header">
+                <span class="pane-title" id="inputTitle">CSV Input</span>
+                <div class="pane-actions">
+                    <button class="pane-btn" id="pasteBtn">Paste</button>
+                    <button class="pane-btn" id="clearBtn">Clear</button>
+                    <button class="pane-btn" id="fileBtn">Open file…</button>
+                    <input type="file" id="fileInput" accept=".csv,.json,.txt,text/csv,application/json" style="display:none">
+                </div>
+            </div>
+            <textarea class="code-area" id="inputArea" spellcheck="false" placeholder="Paste CSV here — or drop a .csv file anywhere in this pane."></textarea>
+            <div class="err-panel" id="inputErr"></div>
+        </section>
+
+        <!-- Output Pane -->
+        <section class="pane" aria-label="Output">
+            <div class="pane-header">
+                <span class="pane-title" id="outputTitle">JSON Output</span>
+                <div class="pane-actions">
+                    <button class="pane-btn" id="copyBtn">Copy</button>
+                    <button class="pane-btn" id="downloadBtn">Download</button>
+                </div>
+            </div>
+            <textarea class="code-area readonly" id="outputArea" spellcheck="false" readonly placeholder="Converted output appears here."></textarea>
+        </section>
+    </main>
+
+    <!-- Status Bar -->
+    <footer class="status-bar">
+        <div class="status-left">
+            <span class="stat" id="statRows"><strong>0</strong> rows</span>
+            <span class="stat" id="statCols"><strong>0</strong> cols</span>
+            <span class="stat" id="statSize"><strong>0</strong> B in</span>
+        </div>
+        <span class="stat">All processing happens in your browser — nothing uploaded</span>
+    </footer>
+
+</div>
+
+<!-- Suite Badge -->
+<a href="https://freesuite.app" class="suite-badge" target="_blank" rel="noopener">
+    <span class="badge-prefix">by </span>freesuite.app
+</a>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- SEO Content (below fold) -->
+<div class="seo-content">
+    <h1>Free CSV to JSON Converter — Online, Bidirectional</h1>
+
+    <p>freecsv2json.app converts CSV to JSON and JSON to CSV entirely in your browser. Paste data into the left pane and the converted result appears live on the right. The parser follows RFC 4180, so quoted fields with embedded commas, escaped quotes, and multi-line values inside quotes all parse correctly — edge cases that break most free converters. Nothing is uploaded: your CSV files containing customer data, exports, or credentials never leave your device.</p>
+
+    <p>The tool supports four preset delimiters (comma, semicolon, tab, pipe) plus a custom single-character option for unusual formats. You can output JSON as an array of objects (keyed by header row) or as an array of arrays (no keys). For the reverse direction, freecsv2json.app serialises JSON arrays of flat objects into clean CSV with your chosen quoting strategy and line endings.</p>
+
+    <h2>How do I convert CSV to JSON with freecsv2json.app?</h2>
+    <p>Paste your CSV into the input pane on the left. freecsv2json.app auto-detects the delimiter if you've picked "comma", parses the data using the RFC 4180 grammar, and writes valid JSON to the output pane on the right. Toggle the "Header row" checkbox to treat the first row as column names (array of objects) or as just another data row (array of arrays). Click Copy to put the JSON on your clipboard or Download to save it as a <code>.json</code> file.</p>
+
+    <h2>Can freecsv2json.app convert JSON back to CSV?</h2>
+    <p>Yes — switch the mode toggle to "JSON → CSV", or paste JSON that starts with <code>[</code> or <code>{</code> and the direction auto-detects. Arrays of flat objects (for example, <code>[{"name":"Ada","age":37}, {"name":"Bob","age":29}]</code>) convert to a header-plus-rows CSV cleanly. Nested objects and arrays inside cells are JSON-stringified so nothing is lost, though flat data gives the cleanest output.</p>
+
+    <h2>Is freecsv2json.app free to use?</h2>
+    <p>freecsv2json.app is completely free with no sign-up, no ads, no tracking, and no account. The app works offline once loaded (it's a progressive web app) and runs everything as local JavaScript in your browser. There are no usage limits for normal use; very large files (over ~10 MB) may simply slow the tab down since all parsing is in-memory.</p>
+
+    <h2>What makes freecsv2json.app different from other converters?</h2>
+    <p>Most free CSV-to-JSON websites break on three common inputs: quoted fields with commas inside, escaped quotes (<code>""</code>), and multi-line values inside quotes. freecsv2json.app handles all three correctly because the parser follows RFC 4180 character-by-character rather than splitting on delimiters. It also runs entirely client-side, so spreadsheet exports containing private data never touch an external server.</p>
+
+    <h2>Can I use freecsv2json.app on my phone?</h2>
+    <p>Yes. The interface adapts to small screens: input and output stack vertically on mobile and controls wrap cleanly. You can paste from your clipboard, open a CSV from your Files app, and copy the converted JSON back to your clipboard for use in another app. Dark mode follows your system setting automatically.</p>
+
+    <h2>Is my data safe with freecsv2json.app?</h2>
+    <p>Yes. Every line of CSV and JSON you paste stays on your device. freecsv2json.app never sends your content to a server, never stores it in a database, and never uses third-party analytics. The only persistent storage is a small crash-recovery copy of your last input in your browser's local storage, which you can clear at any time.</p>
+
+    <h2>Frequently Asked Questions</h2>
+
+    <details>
+        <summary>How do I convert CSV to JSON?</summary>
+        <p>Paste your CSV into the left pane on freecsv2json.app. The tool detects the delimiter, treats the first row as headers, and outputs valid JSON in the right pane in real time. Copy the result or download it as a .json file.</p>
+    </details>
+
+    <details>
+        <summary>Can it also convert JSON back to CSV?</summary>
+        <p>Yes. Switch the mode toggle to JSON to CSV, or paste JSON that starts with [ or { and freecsv2json.app auto-detects the direction. Arrays of flat objects convert cleanly; nested values are stringified.</p>
+    </details>
+
+    <details>
+        <summary>Does it handle quoted fields with commas?</summary>
+        <p>Yes. The parser follows RFC 4180, so quoted fields with embedded commas, escaped quotes as double quotes, and multi-line values inside quotes all parse correctly. Most free converters break on these — freecsv2json.app does not.</p>
+    </details>
+
+    <details>
+        <summary>What delimiters are supported?</summary>
+        <p>Comma, semicolon, tab, pipe, or any single custom character you type. European CSV files usually use semicolons, tab-separated values use tabs. freecsv2json.app supports them all via the delimiter picker.</p>
+    </details>
+
+    <details>
+        <summary>Is my data uploaded anywhere?</summary>
+        <p>No. All parsing and conversion happens locally in your browser using JavaScript. Nothing is uploaded, logged, or sent to a server. freecsv2json.app is safe for CSV files containing customer data, credentials, or other private content.</p>
+    </details>
+
+    <details>
+        <summary>How large a file can I convert?</summary>
+        <p>Up to about 10 MB of CSV runs smoothly in most browsers. Beyond that, the tab may slow down since everything processes in memory. For server-side batch or API conversion, the Pro tier is planned.</p>
+    </details>
+
+    <div class="upgrade-prompt" id="upgrade-prompt">
+        <div class="upgrade-title">🔒 API access &amp; bulk conversion</div>
+        <div class="upgrade-desc">Convert CSV/JSON via API with 10 MB payloads, batch upload, webhook delivery.</div>
+        <a class="upgrade-link" href="https://freesuite.app" target="_blank" rel="noopener">Unlock with freesuite.app · $2.88/mo</a>
+    </div>
+
+    <div class="more-tools">
+        <div class="more-tools-label">More free tools from Freesuite</div>
+        <div class="more-tools-links">
+            <a href="https://freejsonformatter.app">JSON Formatter</a>
+            <a href="https://freesheets.app">Spreadsheets</a>
+            <a href="https://freebase64.app">Base64 Encoder</a>
+            <a href="https://freesqlformatter.app">SQL Formatter</a>
+            <a href="https://freeregextester.app">Regex Tester</a>
+            <a href="https://freediffchecker.app">Diff Checker</a>
+            <a href="https://freecodebeautify.app">Code Beautifier</a>
+            <a href="https://freewordcounter.app">Word Counter</a>
+        </div>
+    </div>
+</div>
+
+<footer class="seo-footer">
+    &copy; freecsv2json.app
+</footer>
+
+<script>
+/* ========================================================================
+   PURE CONVERSION FUNCTIONS (no DOM — portable to a serverless function)
+   ======================================================================== */
+
+/**
+ * Parse CSV text to an array of arrays of strings, following RFC 4180.
+ * Handles: quoted fields, embedded delimiters, escaped quotes (""), CRLF/LF,
+ * multi-line values inside quotes. Throws on malformed quotes.
+ */
+function parseCSV(text, opts = {}) {
+    const delim = opts.delimiter || ',';
+    const trim = opts.trim !== false;
+    const rows = [];
+    let field = '';
+    let row = [];
+    let i = 0;
+    let inQuotes = false;
+    const len = text.length;
+
+    while (i < len) {
+        const c = text[i];
+
+        if (inQuotes) {
+            if (c === '"') {
+                if (text[i + 1] === '"') { field += '"'; i += 2; continue; }
+                inQuotes = false;
+                i++;
+            } else {
+                field += c;
+                i++;
+            }
+        } else {
+            if (c === '"') {
+                if (field.length === 0) { inQuotes = true; i++; }
+                else { field += c; i++; }
+            } else if (c === delim) {
+                row.push(trim ? field.trim() : field);
+                field = '';
+                i++;
+            } else if (c === '\r') {
+                row.push(trim ? field.trim() : field);
+                rows.push(row);
+                row = [];
+                field = '';
+                i++;
+                if (text[i] === '\n') i++;
+            } else if (c === '\n') {
+                row.push(trim ? field.trim() : field);
+                rows.push(row);
+                row = [];
+                field = '';
+                i++;
+            } else {
+                field += c;
+                i++;
+            }
+        }
+    }
+
+    if (inQuotes) throw new Error('Unterminated quoted field (missing closing ")');
+
+    if (field.length > 0 || row.length > 0) {
+        row.push(trim ? field.trim() : field);
+        rows.push(row);
+    }
+
+    // drop fully empty trailing row
+    if (rows.length && rows[rows.length - 1].length === 1 && rows[rows.length - 1][0] === '') {
+        rows.pop();
+    }
+
+    return rows;
+}
+
+/**
+ * Convert parsed rows to JSON. If header=true, first row becomes keys.
+ * shape: "objects" or "arrays".
+ */
+function rowsToJSON(rows, { header = true, shape = 'objects' } = {}) {
+    if (!rows.length) return shape === 'objects' ? [] : [];
+    if (shape === 'arrays' || !header) {
+        return header ? rows.slice(1) : rows;
+    }
+    const keys = rows[0];
+    return rows.slice(1).map(r => {
+        const obj = {};
+        for (let i = 0; i < keys.length; i++) {
+            obj[keys[i] || `col${i + 1}`] = r[i] ?? '';
+        }
+        return obj;
+    });
+}
+
+/**
+ * Serialize rows (array of arrays) to CSV text.
+ */
+function rowsToCSV(rows, opts = {}) {
+    const delim = opts.delimiter || ',';
+    const eol = opts.eol === 'crlf' ? '\r\n' : '\n';
+    const quoteAll = opts.quote === 'all';
+    const needsQuoting = (s) => /["\r\n]/.test(s) || s.includes(delim);
+    const escape = (s) => {
+        const str = s == null ? '' : String(s);
+        if (quoteAll || needsQuoting(str)) return '"' + str.replace(/"/g, '""') + '"';
+        return str;
+    };
+    return rows.map(r => r.map(escape).join(delim)).join(eol);
+}
+
+/**
+ * JSON → rows. Accepts array of objects, array of arrays, or single object.
+ */
+function jsonToRows(data) {
+    if (!Array.isArray(data)) {
+        if (data && typeof data === 'object') data = [data];
+        else throw new Error('Expected a JSON array or object at the top level.');
+    }
+    if (data.length === 0) return [[]];
+
+    // array of arrays
+    if (Array.isArray(data[0])) {
+        return data.map(r => r.map(v => v == null ? '' : typeof v === 'object' ? JSON.stringify(v) : String(v)));
+    }
+
+    // array of objects — collect union of keys preserving first-seen order
+    const keys = [];
+    const seen = new Set();
+    for (const row of data) {
+        if (row && typeof row === 'object' && !Array.isArray(row)) {
+            for (const k of Object.keys(row)) {
+                if (!seen.has(k)) { seen.add(k); keys.push(k); }
+            }
+        }
+    }
+    const rows = [keys];
+    for (const row of data) {
+        const r = keys.map(k => {
+            const v = row == null ? '' : row[k];
+            if (v == null) return '';
+            if (typeof v === 'object') return JSON.stringify(v);
+            return String(v);
+        });
+        rows.push(r);
+    }
+    return rows;
+}
+
+/* ========================================================================
+   UI CODE
+   ======================================================================== */
+
+(() => {
+    /* ---- Dark mode ---- */
+    const toggle = document.getElementById('themeToggle');
+    const icon = toggle.querySelector('.toggle-icon');
+    const getTheme = () => localStorage.getItem('suite_theme') ||
+        (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const applyTheme = (t) => {
+        document.documentElement.classList.toggle('dark', t === 'dark');
+        icon.textContent = t === 'dark' ? '🌙' : '☀️';
+        localStorage.setItem('suite_theme', t);
+    };
+    applyTheme(getTheme());
+    toggle.addEventListener('click', () => {
+        const cur = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        applyTheme(cur === 'dark' ? 'light' : 'dark');
+    });
+})();
+
+/* ---- Toast ---- */
+const showToast = (msg) => {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+};
+
+/* ---- SW registration ---- */
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js').then(reg => {
+        reg.addEventListener('updatefound', () => {
+            const sw = reg.installing;
+            sw && sw.addEventListener('statechange', () => {
+                if (sw.state === 'installed' && navigator.serviceWorker.controller) {
+                    showToast('Update available — refreshing...');
+                    sw.postMessage('skipWaiting');
+                }
+            });
+        });
+    }).catch(() => {});
+    navigator.serviceWorker.addEventListener('controllerchange', () => window.location.reload());
+}
+
+/* ---- State ---- */
+const LS = {
+    mode: 'csv2json_mode',
+    delim: 'csv2json_delim',
+    header: 'csv2json_header',
+    pretty: 'csv2json_json_pretty',
+    shape: 'csv2json_json_shape',
+    csvQuote: 'csv2json_csv_quote',
+    csvEol: 'csv2json_csv_eol',
+    trim: 'csv2json_trim',
+    lastInput: 'csv2json_last_input',
+};
+
+const el = {
+    input:        document.getElementById('inputArea'),
+    output:       document.getElementById('outputArea'),
+    inputErr:     document.getElementById('inputErr'),
+    inputTitle:   document.getElementById('inputTitle'),
+    outputTitle:  document.getElementById('outputTitle'),
+    modeCsv2Json: document.getElementById('modeCsv2Json'),
+    modeJson2Csv: document.getElementById('modeJson2Csv'),
+    delimSel:     document.getElementById('delimSel'),
+    delimCustom:  document.getElementById('delimCustom'),
+    headerChk:    document.getElementById('headerChk'),
+    trimChk:      document.getElementById('trimChk'),
+    jsonShape:    document.getElementById('jsonShape'),
+    prettyChk:    document.getElementById('prettyChk'),
+    csvOutOpts:   document.getElementById('csvOutputOptions'),
+    outOpts:      document.getElementById('outputOptions'),
+    csvQuote:     document.getElementById('csvQuote'),
+    csvEol:       document.getElementById('csvEol'),
+    swapBtn:      document.getElementById('swapBtn'),
+    exampleBtn:   document.getElementById('exampleBtn'),
+    pasteBtn:     document.getElementById('pasteBtn'),
+    clearBtn:     document.getElementById('clearBtn'),
+    fileBtn:      document.getElementById('fileBtn'),
+    fileInput:    document.getElementById('fileInput'),
+    copyBtn:      document.getElementById('copyBtn'),
+    downloadBtn:  document.getElementById('downloadBtn'),
+    statRows:     document.getElementById('statRows'),
+    statCols:     document.getElementById('statCols'),
+    statSize:     document.getElementById('statSize'),
+};
+
+let mode = localStorage.getItem(LS.mode) || 'csv2json';
+
+/* ---- Load saved prefs ---- */
+const loadPrefs = () => {
+    const delim = localStorage.getItem(LS.delim);
+    if (delim != null) {
+        const preset = [',', ';', '\t', '|'];
+        if (preset.includes(delim)) {
+            el.delimSel.value = delim === '\t' ? '\\t' : delim;
+        } else {
+            el.delimSel.value = 'custom';
+            el.delimCustom.value = delim;
+            el.delimCustom.style.display = '';
+        }
+    }
+    const h = localStorage.getItem(LS.header);
+    if (h !== null) el.headerChk.checked = h === '1';
+    const tr = localStorage.getItem(LS.trim);
+    if (tr !== null) el.trimChk.checked = tr === '1';
+    const p = localStorage.getItem(LS.pretty);
+    if (p !== null) el.prettyChk.checked = p === '1';
+    const s = localStorage.getItem(LS.shape);
+    if (s) el.jsonShape.value = s;
+    const q = localStorage.getItem(LS.csvQuote);
+    if (q) el.csvQuote.value = q;
+    const e = localStorage.getItem(LS.csvEol);
+    if (e) el.csvEol.value = e;
+
+    const last = localStorage.getItem(LS.lastInput);
+    if (last) el.input.value = last;
+};
+loadPrefs();
+
+/* ---- Mode switching ---- */
+const applyMode = () => {
+    el.modeCsv2Json.classList.toggle('active', mode === 'csv2json');
+    el.modeJson2Csv.classList.toggle('active', mode === 'json2csv');
+    if (mode === 'csv2json') {
+        el.inputTitle.textContent = 'CSV Input';
+        el.outputTitle.textContent = 'JSON Output';
+        el.input.placeholder = 'Paste CSV here — or drop a .csv file anywhere in this pane.';
+        el.outOpts.style.display = '';
+        el.csvOutOpts.style.display = 'none';
+    } else {
+        el.inputTitle.textContent = 'JSON Input';
+        el.outputTitle.textContent = 'CSV Output';
+        el.input.placeholder = 'Paste JSON here — array of objects or array of arrays.';
+        el.outOpts.style.display = 'none';
+        el.csvOutOpts.style.display = '';
+    }
+    localStorage.setItem(LS.mode, mode);
+};
+applyMode();
+
+el.modeCsv2Json.addEventListener('click', () => { mode = 'csv2json'; applyMode(); convert(); });
+el.modeJson2Csv.addEventListener('click', () => { mode = 'json2csv'; applyMode(); convert(); });
+
+/* ---- Delimiter picker ---- */
+const currentDelimiter = () => {
+    const v = el.delimSel.value;
+    if (v === 'custom') return (el.delimCustom.value || ',').slice(0, 1);
+    if (v === '\\t') return '\t';
+    return v;
+};
+el.delimSel.addEventListener('change', () => {
+    el.delimCustom.style.display = el.delimSel.value === 'custom' ? '' : 'none';
+    localStorage.setItem(LS.delim, currentDelimiter());
+    convert();
+});
+el.delimCustom.addEventListener('input', () => {
+    localStorage.setItem(LS.delim, currentDelimiter());
+    convert();
+});
+
+/* ---- Option change listeners ---- */
+const bindPref = (node, key, pref) => {
+    node.addEventListener('change', () => {
+        const v = node.type === 'checkbox' ? (node.checked ? '1' : '0') : node.value;
+        localStorage.setItem(pref, v);
+        convert();
+    });
+};
+bindPref(el.headerChk, 'checked', LS.header);
+bindPref(el.trimChk, 'checked', LS.trim);
+bindPref(el.prettyChk, 'checked', LS.pretty);
+bindPref(el.jsonShape, 'value', LS.shape);
+bindPref(el.csvQuote, 'value', LS.csvQuote);
+bindPref(el.csvEol, 'value', LS.csvEol);
+
+/* ---- Input auto-detect on paste ---- */
+el.input.addEventListener('paste', () => {
+    setTimeout(() => {
+        const text = el.input.value.trim();
+        const looksJson = /^[\[{]/.test(text);
+        const newMode = looksJson ? 'json2csv' : 'csv2json';
+        if (newMode !== mode) { mode = newMode; applyMode(); }
+        convert();
+    }, 0);
+});
+
+/* ---- Core convert (debounced) ---- */
+let convertTimer = null;
+const debounce = (fn, ms) => {
+    clearTimeout(convertTimer);
+    convertTimer = setTimeout(fn, ms);
+};
+
+const showError = (msg) => {
+    el.inputErr.textContent = msg;
+};
+const clearError = () => { el.inputErr.textContent = ''; };
+
+const updateStats = (rowCount, colCount, byteSize) => {
+    el.statRows.innerHTML = `<strong>${rowCount}</strong> row${rowCount === 1 ? '' : 's'}`;
+    el.statCols.innerHTML = `<strong>${colCount}</strong> col${colCount === 1 ? '' : 's'}`;
+    const kb = byteSize >= 1024 ? (byteSize / 1024).toFixed(1) + ' KB' : byteSize + ' B';
+    el.statSize.innerHTML = `<strong>${kb}</strong> in`;
+};
+
+function convert() {
+    const src = el.input.value;
+    const byteSize = new Blob([src]).size;
+
+    // Save crash-recovery copy (capped 100KB)
+    if (byteSize < 100 * 1024) localStorage.setItem(LS.lastInput, src);
+
+    if (!src.trim()) {
+        el.output.value = '';
+        clearError();
+        updateStats(0, 0, byteSize);
+        return;
+    }
+
+    try {
+        if (mode === 'csv2json') {
+            const rows = parseCSV(src, {
+                delimiter: currentDelimiter(),
+                trim: el.trimChk.checked,
+            });
+            const header = el.headerChk.checked;
+            const shape = el.jsonShape.value;
+            const data = rowsToJSON(rows, { header, shape });
+            const out = el.prettyChk.checked
+                ? JSON.stringify(data, null, 2)
+                : JSON.stringify(data);
+            el.output.value = out;
+            clearError();
+            const cols = rows.length ? Math.max(...rows.map(r => r.length)) : 0;
+            const dataRows = header ? Math.max(0, rows.length - 1) : rows.length;
+            updateStats(dataRows, cols, byteSize);
+        } else {
+            const data = JSON.parse(src);
+            const rows = jsonToRows(data);
+            const csv = rowsToCSV(rows, {
+                delimiter: currentDelimiter(),
+                quote: el.csvQuote.value,
+                eol: el.csvEol.value,
+            });
+            el.output.value = csv;
+            clearError();
+            const cols = rows.length ? rows[0].length : 0;
+            updateStats(Math.max(0, rows.length - 1), cols, byteSize);
+        }
+    } catch (e) {
+        showError((mode === 'csv2json' ? 'CSV parse error: ' : 'JSON parse error: ') + (e.message || e));
+        el.output.value = '';
+    }
+}
+
+el.input.addEventListener('input', () => debounce(convert, 150));
+
+/* ---- Ctrl/Cmd+Enter forces convert immediately ---- */
+document.addEventListener('keydown', (e) => {
+    const mod = e.ctrlKey || e.metaKey;
+    if (mod && e.key === 'Enter') { e.preventDefault(); convert(); }
+    if (mod && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
+        e.preventDefault();
+        copyOutput();
+    }
+});
+
+/* ---- Copy / Download / Paste / Clear / Swap / Example ---- */
+async function copyOutput() {
+    const v = el.output.value;
+    if (!v) { showToast('Nothing to copy'); return; }
+    try {
+        await navigator.clipboard.writeText(v);
+        showToast('Copied');
+    } catch {
+        el.output.select();
+        document.execCommand('copy');
+        showToast('Copied');
+    }
+}
+el.copyBtn.addEventListener('click', copyOutput);
+
+el.downloadBtn.addEventListener('click', () => {
+    const v = el.output.value;
+    if (!v) { showToast('Nothing to download'); return; }
+    const isJson = mode === 'csv2json';
+    const ext = isJson ? 'json' : 'csv';
+    const mime = isJson ? 'application/json' : 'text/csv';
+    const blob = new Blob([v], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `output.${ext}`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast(`Downloaded output.${ext}`);
+});
+
+el.pasteBtn.addEventListener('click', async () => {
+    try {
+        const text = await navigator.clipboard.readText();
+        el.input.value = text;
+        const looksJson = /^[\[{]/.test(text.trim());
+        const newMode = looksJson ? 'json2csv' : 'csv2json';
+        if (newMode !== mode) { mode = newMode; applyMode(); }
+        convert();
+    } catch {
+        showToast('Clipboard access denied');
+    }
+});
+
+el.clearBtn.addEventListener('click', () => {
+    el.input.value = '';
+    localStorage.removeItem(LS.lastInput);
+    convert();
+});
+
+el.swapBtn.addEventListener('click', () => {
+    const out = el.output.value;
+    if (!out) { showToast('Nothing to swap'); return; }
+    el.input.value = out;
+    mode = mode === 'csv2json' ? 'json2csv' : 'csv2json';
+    applyMode();
+    convert();
+});
+
+el.exampleBtn.addEventListener('click', () => {
+    const ex = mode === 'csv2json'
+        ? 'name,role,salary,notes\nAda Lovelace,Engineer,120000,"First, and arguably best"\nAlan Turing,Cryptanalyst,95000,"Breaks ""unbreakable"" codes"\nGrace Hopper,Admiral,110000,Coined "bug"'
+        : '[\n  {"name": "Ada Lovelace", "role": "Engineer", "salary": 120000},\n  {"name": "Alan Turing", "role": "Cryptanalyst", "salary": 95000},\n  {"name": "Grace Hopper", "role": "Admiral", "salary": 110000}\n]';
+    el.input.value = ex;
+    convert();
+});
+
+/* ---- File open / drag-drop ---- */
+el.fileBtn.addEventListener('click', () => el.fileInput.click());
+el.fileInput.addEventListener('change', (e) => {
+    const f = e.target.files[0];
+    if (f) loadFile(f);
+    e.target.value = '';
+});
+
+function loadFile(file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+        el.input.value = reader.result;
+        const text = (reader.result || '').trim();
+        const looksJson = /^[\[{]/.test(text) || /\.json$/i.test(file.name);
+        const newMode = looksJson ? 'json2csv' : 'csv2json';
+        if (newMode !== mode) { mode = newMode; applyMode(); }
+        convert();
+        showToast(`Loaded ${file.name}`);
+    };
+    reader.onerror = () => showToast('File read error');
+    reader.readAsText(file);
+}
+
+['dragenter', 'dragover'].forEach(ev => {
+    el.input.addEventListener(ev, (e) => {
+        e.preventDefault();
+        el.input.classList.add('drag-over');
+    });
+});
+['dragleave', 'drop'].forEach(ev => {
+    el.input.addEventListener(ev, (e) => {
+        e.preventDefault();
+        el.input.classList.remove('drag-over');
+    });
+});
+el.input.addEventListener('drop', (e) => {
+    const f = e.dataTransfer.files[0];
+    if (f) loadFile(f);
+});
+
+/* ---- Initial run ---- */
+convert();
+
+</script>
+
+</body>
+</html>

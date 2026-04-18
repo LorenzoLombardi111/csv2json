@@ -1,0 +1,55 @@
+# freecsv2json.app
+
+> Free, private, browser-based CSV to JSON and JSON to CSV converter. Bidirectional, RFC 4180 compliant, zero uploads.
+
+## What it does
+freecsv2json.app converts CSV to JSON and JSON back to CSV entirely in the user's browser. Paste data into the left pane; converted output appears live on the right. The parser follows RFC 4180 so quoted fields with embedded commas, escaped quotes, and multi-line values inside quotes all parse correctly — edge cases that break most free converters.
+
+## Key facts
+- 100% free, no sign-up required, no account
+- Works offline (progressive web app with service worker)
+- Privacy-first: zero tracking, no cookies, no analytics, no server-side processing
+- Runs on any modern browser — desktop, tablet, or mobile
+- Bidirectional: CSV → JSON and JSON → CSV with auto-detection
+- Part of the Freesuite collection (freesuite.app)
+
+## Features
+- RFC 4180 compliant CSV parser (handles quoted fields, embedded delimiters, escaped quotes, multi-line values)
+- Delimiter picker: comma, semicolon, tab, pipe, or any single custom character
+- "First row is header" toggle (array of objects vs array of arrays)
+- JSON output options: pretty or minified, array of objects or array of arrays
+- CSV output options: quote only when needed or quote all fields, LF or CRLF line endings
+- Copy to clipboard, download as .json or .csv, paste from clipboard
+- Drop a .csv or .json file directly into the input pane
+- Swap input ↔ output for round-tripping
+- Live debounced conversion (150ms)
+- Crash-recovery: last input saved to localStorage (capped 100KB)
+- Dark mode, keyboard shortcuts (Ctrl/Cmd+Enter to force reconvert)
+
+## Comparisons
+- vs ConvertCSV.com: freecsv2json.app runs 100% in the browser with no uploads; ConvertCSV is server-side and processes files remotely.
+- vs csvjson.io: both are browser-based; freecsv2json.app adds stronger RFC 4180 handling for quoted/multi-line fields, a live bidirectional workflow, and offline PWA support.
+- vs Excel "Save as JSON": Excel has no native CSV-to-JSON export; freecsv2json.app fills that gap for non-technical Excel users.
+
+## Related tools
+- freejsonformatter.app — Validate and pretty-print JSON
+- freesheets.app — Full spreadsheet editor in the browser
+- freesqlformatter.app — Format and beautify SQL queries
+- freeregextester.app — Test regex patterns with live highlighting
+- freebase64.app — Base64 encode and decode text or files
+- freediffchecker.app — Compare two blocks of text side-by-side
+- freecodebeautify.app — Format JS, HTML, CSS, Python, and more
+
+## Pages
+- [Home — CSV ↔ JSON Converter](https://freecsv2json.app/): The main app. Live bidirectional conversion, all options, download/copy.
+- [vs ConvertCSV.com](https://freecsv2json.app/pages/vs-convertcsv.html): Feature comparison with ConvertCSV.com.
+- [vs csvjson.io](https://freecsv2json.app/pages/vs-csvjsonio.html): Feature comparison with csvjson.io.
+- [CSV to JSON for Developers](https://freecsv2json.app/pages/csv-to-json-for-developers.html): Use case guide — turning spreadsheet exports into API-ready JSON.
+- [JSON to CSV for Excel](https://freecsv2json.app/pages/json-to-csv-for-excel.html): Use case guide — converting JSON API responses into CSV for Excel users.
+- [How to Convert CSV to JSON](https://freecsv2json.app/pages/how-to-convert-csv-to-json.html): Step-by-step tutorial.
+
+## Full Content
+For the complete text content of all pages, see [llms-full.txt](https://freecsv2json.app/llms-full.txt).
+
+## URL
+https://freecsv2json.app/

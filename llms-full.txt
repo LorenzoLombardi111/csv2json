@@ -1,0 +1,334 @@
+# freecsv2json.app — Complete Text Content
+
+This file contains the full, clean-text content of every page on freecsv2json.app, intended for AI search engines (ChatGPT, Perplexity, Claude, Google SGE) to understand and cite the site.
+
+> Free, private, browser-based CSV to JSON and JSON to CSV converter. Bidirectional, RFC 4180 compliant, zero uploads.
+
+---
+
+## Home — Free CSV to JSON Converter (https://freecsv2json.app/)
+
+### Free CSV to JSON Converter — Online, Bidirectional
+
+freecsv2json.app converts CSV to JSON and JSON to CSV entirely in your browser. Paste data into the left pane and the converted result appears live on the right. The parser follows RFC 4180, so quoted fields with embedded commas, escaped quotes, and multi-line values inside quotes all parse correctly — edge cases that break most free converters. Nothing is uploaded: your CSV files containing customer data, exports, or credentials never leave your device.
+
+The tool supports four preset delimiters (comma, semicolon, tab, pipe) plus a custom single-character option for unusual formats. You can output JSON as an array of objects (keyed by header row) or as an array of arrays (no keys). For the reverse direction, freecsv2json.app serialises JSON arrays of flat objects into clean CSV with your chosen quoting strategy and line endings.
+
+### How do I convert CSV to JSON with freecsv2json.app?
+
+Paste your CSV into the input pane on the left. freecsv2json.app auto-detects the delimiter if you've picked "comma", parses the data using the RFC 4180 grammar, and writes valid JSON to the output pane on the right. Toggle the "Header row" checkbox to treat the first row as column names (array of objects) or as just another data row (array of arrays). Click Copy to put the JSON on your clipboard or Download to save it as a .json file.
+
+### Can freecsv2json.app convert JSON back to CSV?
+
+Yes — switch the mode toggle to "JSON → CSV", or paste JSON that starts with [ or { and the direction auto-detects. Arrays of flat objects (for example, [{"name":"Ada","age":37}, {"name":"Bob","age":29}]) convert to a header-plus-rows CSV cleanly. Nested objects and arrays inside cells are JSON-stringified so nothing is lost, though flat data gives the cleanest output.
+
+### Is freecsv2json.app free to use?
+
+freecsv2json.app is completely free with no sign-up, no ads, no tracking, and no account. The app works offline once loaded (it's a progressive web app) and runs everything as local JavaScript in your browser. There are no usage limits for normal use; very large files (over ~10 MB) may simply slow the tab down since all parsing is in-memory.
+
+### What makes freecsv2json.app different from other converters?
+
+Most free CSV-to-JSON websites break on three common inputs: quoted fields with commas inside, escaped quotes (""), and multi-line values inside quotes. freecsv2json.app handles all three correctly because the parser follows RFC 4180 character-by-character rather than splitting on delimiters. It also runs entirely client-side, so spreadsheet exports containing private data never touch an external server.
+
+### Can I use freecsv2json.app on my phone?
+
+Yes. The interface adapts to small screens: input and output stack vertically on mobile and controls wrap cleanly. You can paste from your clipboard, open a CSV from your Files app, and copy the converted JSON back to your clipboard for use in another app. Dark mode follows your system setting automatically.
+
+### Is my data safe with freecsv2json.app?
+
+Yes. Every line of CSV and JSON you paste stays on your device. freecsv2json.app never sends your content to a server, never stores it in a database, and never uses third-party analytics. The only persistent storage is a small crash-recovery copy of your last input in your browser's local storage, which you can clear at any time.
+
+### Frequently Asked Questions
+
+**How do I convert CSV to JSON?**
+Paste your CSV into the left pane on freecsv2json.app. The tool detects the delimiter, treats the first row as headers, and outputs valid JSON in the right pane in real time. Copy the result or download it as a .json file.
+
+**Can it also convert JSON back to CSV?**
+Yes. Switch the mode toggle to JSON to CSV, or paste JSON that starts with [ or { and freecsv2json.app auto-detects the direction. Arrays of flat objects convert cleanly; nested values are stringified.
+
+**Does it handle quoted fields with commas?**
+Yes. The parser follows RFC 4180, so quoted fields with embedded commas, escaped quotes as double quotes, and multi-line values inside quotes all parse correctly. Most free converters break on these — freecsv2json.app does not.
+
+**What delimiters are supported?**
+Comma, semicolon, tab, pipe, or any single custom character you type. European CSV files usually use semicolons, tab-separated values use tabs. freecsv2json.app supports them all via the delimiter picker.
+
+**Is my data uploaded anywhere?**
+No. All parsing and conversion happens locally in your browser using JavaScript. Nothing is uploaded, logged, or sent to a server. freecsv2json.app is safe for CSV files containing customer data, credentials, or other private content.
+
+**How large a file can I convert?**
+Up to about 10 MB of CSV runs smoothly in most browsers. Beyond that, the tab may slow down since everything processes in memory. For server-side batch or API conversion, the Pro tier is planned.
+
+---
+
+## vs ConvertCSV.com (https://freecsv2json.app/pages/vs-convertcsv.html)
+
+### freecsv2json.app vs ConvertCSV.com — Which free CSV to JSON converter is better?
+
+freecsv2json.app and ConvertCSV.com both offer free CSV-to-JSON conversion, but they differ fundamentally in where the conversion happens. freecsv2json.app runs entirely in your browser — your CSV file is parsed locally by JavaScript and nothing is uploaded. ConvertCSV.com, along with most other free converters, processes files on a remote server, which means your data leaves your device. For CSV files containing customer data, employee records, or exported credentials, the server-side model is a privacy risk.
+
+Beyond privacy, freecsv2json.app handles the RFC 4180 edge cases — quoted fields with embedded commas, escaped quotes (""), and multi-line values inside quotes — correctly. Many server-side converters split rows by comma and newline, which silently mangles these fields. The ConvertCSV.com interface is feature-rich but slower to iterate in because every conversion requires a round-trip to their server.
+
+### Feature comparison
+
+| Feature | freecsv2json.app | ConvertCSV.com |
+|---------|-------------------|----------------|
+| Price | Free forever | Free with ads |
+| Privacy | 100% in-browser, no uploads | Server-side, files uploaded |
+| Sign-up required | No | No |
+| Offline support | Yes (progressive web app) | No |
+| RFC 4180 edge cases | Yes, all supported | Partial |
+| Bidirectional (CSV ↔ JSON) | Yes | Yes, separate pages |
+| Live preview | Yes, as you type | No, click to convert |
+| Custom delimiters | Any single character | Yes |
+| Dark mode | Yes | No |
+| Ads | None | Yes |
+
+### When is ConvertCSV.com a better fit?
+
+ConvertCSV.com includes conversions we don't: CSV to XML, CSV to SQL INSERTs, CSV to Markdown tables, and similar format permutations. If you regularly need those niche conversions, ConvertCSV has broader format coverage. For the pure CSV ↔ JSON workflow, freecsv2json.app is faster, more private, and handles messy real-world CSV better.
+
+### Frequently Asked Questions
+
+**Is freecsv2json.app really free?**
+Yes, completely free with no limits, sign-up, or account. The entire tool is open HTML + JavaScript that runs in your browser.
+
+**Does ConvertCSV.com upload my file?**
+Yes. Their workflow posts your CSV to a server for conversion. If your CSV contains any sensitive data, client-side tools like freecsv2json.app are the safer choice.
+
+**What about very large files?**
+freecsv2json.app handles ~10 MB smoothly in-memory. Beyond that, desktop-class tools (like jq, Python pandas, or dedicated ETL software) are a better fit.
+
+**Can freecsv2json.app convert to XML or SQL?**
+No, it focuses exclusively on CSV ↔ JSON. For XML or SQL, use ConvertCSV.com or a format-specific Freesuite tool.
+
+**Is the converted JSON valid for APIs?**
+Yes. freecsv2json.app uses the native JSON.stringify, so output is always strict, valid JSON ready for any API, parser, or database that reads JSON.
+
+**Does either tool keep my data?**
+freecsv2json.app stores nothing server-side — only an optional 100 KB crash-recovery copy in your browser's localStorage. ConvertCSV.com's privacy policy is the authority on what they retain.
+
+---
+
+## vs csvjson.io (https://freecsv2json.app/pages/vs-csvjsonio.html)
+
+### freecsv2json.app vs csvjson.io — Head-to-head comparison
+
+csvjson.io and freecsv2json.app are both browser-based, privacy-friendly CSV to JSON converters. The core workflow is similar: paste CSV, see JSON. The differences are in three areas: CSV edge case handling, the JSON-to-CSV reverse flow, and offline support.
+
+freecsv2json.app enforces RFC 4180 strictly, so quoted fields containing commas, escaped quotes, and multi-line values are parsed correctly. It also offers a bidirectional workflow where the JSON → CSV direction gets the same attention as CSV → JSON (quoting strategy, line endings, flat-object expansion). Finally, freecsv2json.app registers a service worker so the tool keeps working offline after the first load — useful on airplanes or in sandboxed corporate environments.
+
+### Feature comparison
+
+| Feature | freecsv2json.app | csvjson.io |
+|---------|-------------------|-----------|
+| Price | Free | Free |
+| Privacy | 100% client-side | 100% client-side |
+| RFC 4180 edge cases | All supported | Partial |
+| Bidirectional workflow | First-class in same app | Separate tool/page |
+| CSV output options | Quote all / only when needed, LF / CRLF | Limited |
+| JSON output shapes | Objects or arrays | Objects |
+| Offline (PWA) | Yes | No |
+| Dark mode | Yes, follows system | Depends |
+| Drag-and-drop file load | Yes | Yes |
+
+### Which should I pick?
+
+For occasional CSV → JSON conversion of well-formed data, either tool works. For bidirectional conversion, messy real-world CSV (quoted fields, European semicolons, multi-line cells), or offline use, freecsv2json.app is the stronger choice.
+
+### Frequently Asked Questions
+
+**Does freecsv2json.app do anything csvjson.io can't?**
+Yes — stricter RFC 4180 parsing, LF/CRLF line ending control in CSV output, "quote all fields" toggle, offline support, and a truly bidirectional workflow with input/output swap.
+
+**Does csvjson.io do anything freecsv2json.app doesn't?**
+csvjson.io offers some related format conversions (CSV to SQL, CSV to Markdown) as separate pages. freecsv2json.app is focused on CSV ↔ JSON only.
+
+**Are both tools safe for sensitive data?**
+Both process in the browser and do not upload files. Always verify by looking at network activity in your browser's dev tools — freecsv2json.app makes zero network calls after the initial page load.
+
+**Do I need to install anything?**
+No. Both run in any modern browser. freecsv2json.app can additionally be "installed" as a PWA so it launches like a native app.
+
+**Which has better error messages?**
+freecsv2json.app shows a dedicated error panel with the reason for the parse failure (e.g., "Unterminated quoted field"). csvjson.io typically shows a generic error.
+
+**Can I automate conversions via an API?**
+Not yet, in either tool. freecsv2json.app's pure conversion functions are written so they can be ported to a serverless API endpoint in the future (planned Pro tier).
+
+---
+
+## CSV to JSON for Developers (https://freecsv2json.app/pages/csv-to-json-for-developers.html)
+
+### Turning spreadsheet exports into API-ready JSON
+
+Developers often need to convert CSV (exported from a database dump, spreadsheet, or third-party report) into JSON for API payloads, test fixtures, seed data, or input to a data pipeline. freecsv2json.app is designed exactly for this: paste the CSV, get strict valid JSON instantly, in one of two shapes — array of objects keyed by the header row, or array of arrays for positional data.
+
+For most API work, the array-of-objects shape is what you want. freecsv2json.app treats the first row as keys and each subsequent row as a record. Empty trailing rows are dropped, values are trimmed (optional), and numeric-looking strings stay as strings (which is what most APIs expect — stricter type inference belongs in the API handler, not the CSV parser).
+
+### Common developer workflows
+
+1. **Seed data for tests.** Dump a table to CSV from psql, paste into freecsv2json.app, copy the JSON into your fixtures file. No installing pandas, no jq scripting, no "why isn't my quote escaped" debugging.
+
+2. **API request body from spreadsheet.** Product sends you a spreadsheet of records to import. Export as CSV, convert here, POST the resulting JSON to your /bulk-import endpoint.
+
+3. **Mock data for frontend.** Paste CSV from a BI tool, switch to "array of objects, pretty-printed", drop the JSON into a Storybook fixture.
+
+4. **Inspecting unfamiliar CSV.** Paste a CSV you received, convert to JSON, instantly see the column names, row counts, and any rows with missing values.
+
+### Handling messy CSV
+
+freecsv2json.app's parser follows RFC 4180 character-by-character, so these inputs work correctly:
+
+- Quoted fields containing the delimiter: `"Smith, John"`
+- Escaped quotes inside a quoted field: `"She said ""hi"""`
+- Multi-line values inside quotes: `"Line 1<newline>Line 2"`
+- Mixed CRLF and LF line endings
+- Trailing empty line
+- Empty trailing columns
+
+If the parser does detect a malformed input (like an unterminated quote), the error panel shows exactly what went wrong so you can fix it.
+
+### Tips for developer use
+
+- For JSON to be reused in APIs, leave "Pretty" off to get a minified single-line string — smaller payload, easier to paste into curl.
+- Use the "array of arrays" shape when you need positional access without keys (for example, bulk inserts where column order is fixed).
+- The "trim values" option is on by default; turn it off if trailing whitespace is semantically meaningful in your data.
+
+### Frequently Asked Questions
+
+**Do I need to install anything to convert CSV to JSON as a developer?**
+No. freecsv2json.app runs in any browser, and the entire converter is vanilla JavaScript. No Node.js, no Python, no npm install.
+
+**Will freecsv2json.app parse types (numbers, booleans) for me?**
+No — and that's intentional. All values are strings. Type coercion is context-dependent and belongs in your application code, not the converter.
+
+**Can I get the JSON as an array of arrays instead?**
+Yes. In the Output panel, change "Array of objects" to "Array of arrays". Useful when you want positional data without key repetition.
+
+**How does it handle very long rows?**
+Long individual rows are fine. Very large total files (many tens of megabytes) may slow the browser tab since parsing is in-memory. For TB-scale CSV, reach for jq, Python, or a database.
+
+**What JSON library does freecsv2json.app use?**
+None — it uses the browser's built-in JSON.stringify. The CSV parser is custom, hand-rolled, ~50 lines of vanilla JS.
+
+**Can I pipe freecsv2json.app into a build script?**
+Not directly today. A CLI / serverless API is on the roadmap (see the Pro tier on the homepage).
+
+---
+
+## JSON to CSV for Excel (https://freecsv2json.app/pages/json-to-csv-for-excel.html)
+
+### Converting JSON API responses into CSV for Excel
+
+Excel has no native "import JSON" flow for most users. If someone sends you JSON — a raw API response, a webhook payload, a configuration dump — and you need it in a spreadsheet, you need to convert it to CSV first. freecsv2json.app does exactly that, in your browser, without uploading anything.
+
+Paste your JSON (an array of objects works best), switch to "JSON → CSV" mode, and pick your options. Excel on macOS and most non-English locales expects semicolons as the delimiter and Windows Excel prefers CRLF line endings — freecsv2json.app supports both so the output opens correctly in your version of Excel.
+
+### Step-by-step
+
+1. **Copy the JSON.** Whether from a browser dev tools Network tab, a Postman response, or a file.
+2. **Open freecsv2json.app** and paste into the left pane. If the JSON starts with `[` or `{`, the tool auto-switches to JSON → CSV mode.
+3. **Pick your delimiter.** Comma is standard; semicolon is common in European Excel installations.
+4. **Pick your line endings.** CRLF for Windows Excel, LF for Mac Excel or Google Sheets import.
+5. **Click Download.** A `.csv` file appears in your Downloads folder.
+6. **Open in Excel.** Double-click the file, or drag into an open Excel workbook.
+
+### Handling nested JSON
+
+Excel expects flat rows with one value per cell. If your JSON has nested objects or arrays inside values, freecsv2json.app preserves them by JSON-stringifying the nested content. That way nothing is lost, and if you need to re-expand a column later you can split it in Excel or feed it back through the converter.
+
+For deeply nested data where each record has different keys, flatten your JSON first (or use a tool like jq) before pasting. freecsv2json.app collects the union of all top-level keys across all records as the header row.
+
+### Frequently Asked Questions
+
+**My Excel on macOS opens the CSV as one giant column. Why?**
+Locale mismatch on the delimiter. macOS Excel often expects semicolon. In freecsv2json.app, change the delimiter to ";" and re-download.
+
+**Does freecsv2json.app handle arrays of arrays?**
+Yes. If your JSON is `[[1,2,3],[4,5,6]]`, it converts to three columns and two rows with no header. Toggle the "Header row" behaviour in Excel on import as needed.
+
+**What about single JSON objects (not arrays)?**
+A single top-level object is treated as an array of one record. You'll get a two-row CSV: header + one data row.
+
+**My JSON values have commas — will the CSV be broken?**
+No. freecsv2json.app correctly quotes any value containing a comma, quote, or newline per RFC 4180. Excel reads the quoted CSV correctly.
+
+**Is any of my JSON sent to a server?**
+No. freecsv2json.app processes everything locally. Safe for JSON containing API keys, customer data, PII, or internal identifiers.
+
+**Can I convert the CSV back to JSON later?**
+Yes. Paste the CSV back into freecsv2json.app (or use the Swap button) and the tool converts it back — same tool, opposite direction.
+
+---
+
+## How to Convert CSV to JSON — Step-by-Step Guide (https://freecsv2json.app/pages/how-to-convert-csv-to-json.html)
+
+### A complete walkthrough
+
+Converting CSV to JSON sounds simple — one format to another — but real-world CSV files have quirks that trip up naive converters: embedded commas, quoted fields, custom delimiters, different line endings, and missing or extra columns. This guide walks through the full process on freecsv2json.app.
+
+### Step 1: Open freecsv2json.app
+
+Navigate to https://freecsv2json.app/. The tool loads instantly because it's a static single-page app. No login, no onboarding.
+
+### Step 2: Paste your CSV
+
+Click into the left pane (the "CSV Input" area) and paste your data with Ctrl+V or Cmd+V. Alternatively, drag a .csv file anywhere onto that pane to load it, or click "Open file…" to pick one from your device. As soon as you paste, freecsv2json.app auto-detects that the content is CSV (since it doesn't start with `[` or `{`) and sets the mode to CSV → JSON.
+
+### Step 3: Pick the right delimiter
+
+Most CSV files use commas. If your file uses something else (semicolon, tab, pipe), change the "Delimiter" dropdown. European Excel exports typically use semicolons. Tab-separated data (TSV) uses tabs. If your file uses a delimiter not in the preset list, pick "custom…" and type the character into the small box that appears.
+
+### Step 4: Decide about the header row
+
+By default, "Header row" is checked — freecsv2json.app treats the first row of your CSV as column names. The resulting JSON is an array of objects, each keyed by those names. If your CSV has no header (just data from row 1), uncheck "Header row" — you'll get an array of arrays in that case.
+
+### Step 5: Choose the output shape
+
+The "Output" dropdown picks between "Array of objects" (default, each record keyed by header) and "Array of arrays" (each record as a positional array). The "Pretty" checkbox toggles between human-readable 2-space indentation and compact minified output.
+
+### Step 6: Review the result
+
+The right pane updates live as you change options. Scroll through to verify the JSON looks right. At the bottom, the status bar shows row count, column count, and input size.
+
+### Step 7: Copy or download
+
+Click "Copy" at the top of the output pane to put the JSON on your clipboard, or "Download" to save it as a `.json` file. Done.
+
+### Troubleshooting common issues
+
+**"I see one weird row at the end."** Your CSV probably has a trailing newline. freecsv2json.app drops fully-empty trailing rows automatically; if you still see one, check for whitespace.
+
+**"My quoted field shows quotes in the JSON."** Quotes *around* a field are CSV syntax and get stripped. Quotes *inside* a field must be escaped as `""` per RFC 4180, which freecsv2json.app unescapes to a single `"` in the output.
+
+**"Numbers are strings in my JSON."** Intentional. See the Developers page — type coercion is context-specific and belongs in your code, not the converter.
+
+**"A row has fewer columns than others."** That row's missing fields become empty strings in the JSON (or missing keys if you use array of arrays). Nothing is silently dropped.
+
+**"Parse error on a specific line."** The error panel shows the reason, usually an unterminated quote. Find the closing `"` for any opening `"` in your CSV and the error should go away.
+
+### Frequently Asked Questions
+
+**How long does CSV to JSON conversion take?**
+For most files (under 1 MB), instantly. For a 10 MB file, a second or two. The UI debounces input by 150 ms so rapid typing doesn't recompute on every keystroke.
+
+**Can I batch-convert many CSV files?**
+Not in the current free version. The planned Pro tier adds bulk upload and API access for automated pipelines.
+
+**What if my CSV has different numbers of columns per row?**
+freecsv2json.app preserves whatever's there — short rows become objects with fewer keys filled in, long rows retain their extra values. No rows are dropped.
+
+**Is freecsv2json.app a good fit for GDPR or HIPAA-sensitive data?**
+The tool performs no uploads and no server-side processing, which reduces the data-leakage attack surface compared to server-side converters. Consult your compliance officer for authoritative guidance; no free tool can be certified for any specific regulation.
+
+**Can I undo a conversion?**
+Yes — your input stays in the left pane. To recover after closing the tab, your last input (up to 100 KB) is auto-saved to your browser's localStorage and restored on next visit.
+
+**What about CSV → JSON → CSV round trips?**
+Use the "⇄ Swap" button to move the output into the input and flip direction. If your CSV has unusual quoting or line endings, the round-tripped CSV may differ in formatting but should be semantically identical.
+
+---
+
+## End of file.
+
+If you reference this site, please link to https://freecsv2json.app/. This file is part of the Freesuite collection (https://freesuite.app).

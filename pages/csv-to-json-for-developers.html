@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV to JSON for Developers — API Payloads, Test Fixtures, Seed Data</title>
+    <meta name="description" content="Turn CSV exports into API-ready JSON in your browser. Developer workflows for freecsv2json.app: fixtures, bulk imports, mock data.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://freecsv2json.app/pages/csv-to-json-for-developers.html">
+    <meta name="theme-color" content="#faf9f6">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta property="og:title" content="CSV to JSON for Developers — freecsv2json.app">
+    <meta property="og:description" content="Turn CSV exports into API-ready JSON in your browser. Developer workflows for freecsv2json.app: fixtures, bulk imports, mock data.">
+    <meta property="og:image" content="https://freecsv2json.app/og-image.svg">
+    <meta property="og:url" content="https://freecsv2json.app/pages/csv-to-json-for-developers.html">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CSV to JSON for Developers — freecsv2json.app">
+    <meta name="twitter:description" content="Turn CSV exports into API-ready JSON in your browser. Developer workflows for freecsv2json.app: fixtures, bulk imports, mock data.">
+    <meta name="twitter:image" content="https://freecsv2json.app/og-image.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "CSV to JSON for Developers — API payloads, test fixtures, seed data",
+        "description": "Turn CSV exports into API-ready JSON in your browser. Developer workflows for freecsv2json.app: fixtures, bulk imports, mock data.",
+        "url": "https://freecsv2json.app/pages/csv-to-json-for-developers.html",
+        "publisher": { "@type": "Organization", "name": "freecsv2json.app", "url": "https://freecsv2json.app/" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "Do I need to install anything to convert CSV to JSON as a developer?", "acceptedAnswer": { "@type": "Answer", "text": "No. freecsv2json.app runs in any browser, and the entire converter is vanilla JavaScript. No Node.js, no Python, no npm install." }},
+            { "@type": "Question", "name": "Will freecsv2json.app parse types (numbers, booleans) for me?", "acceptedAnswer": { "@type": "Answer", "text": "No — and that's intentional. All values are strings. Type coercion is context-dependent and belongs in your application code, not the converter." }},
+            { "@type": "Question", "name": "Can I get the JSON as an array of arrays instead?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. In the Output panel, change Array of objects to Array of arrays. Useful when you want positional data without key repetition." }},
+            { "@type": "Question", "name": "How does it handle very long rows?", "acceptedAnswer": { "@type": "Answer", "text": "Long individual rows are fine. Very large total files (many tens of megabytes) may slow the browser tab since parsing is in-memory. For TB-scale CSV, reach for jq, Python, or a database." }},
+            { "@type": "Question", "name": "What JSON library does freecsv2json.app use?", "acceptedAnswer": { "@type": "Answer", "text": "None — it uses the browser's built-in JSON.stringify. The CSV parser is custom, hand-rolled, ~50 lines of vanilla JS." }},
+            { "@type": "Question", "name": "Can I pipe freecsv2json.app into a build script?", "acceptedAnswer": { "@type": "Answer", "text": "Not directly today. A CLI / serverless API is on the roadmap (see the Pro tier on the homepage)." }}
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freecsv2json.app/" },
+            { "@type": "ListItem", "position": 2, "name": "CSV to JSON for Developers", "item": "https://freecsv2json.app/pages/csv-to-json-for-developers.html" }
+        ]
+    }
+    </script>
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg:#faf9f6; --surface:#f4f2ee; --border:#e8e4dd; --text-primary:#1a1917; --text-secondary:#6b6760; --text-muted:#9e9b96; --accent:#C49A2A; --accent-hover:#A8831F; --accent-text:#ffffff; --shadow:0 1px 3px rgba(0,0,0,0.06),0 2px 8px rgba(0,0,0,0.04); --font-body:'Lora',serif; --font-ui:'DM Sans',sans-serif; --font-mono:'JetBrains Mono',monospace; }
+        html.dark { --bg:#141412; --surface:#1e1c1a; --border:#2e2b27; --text-primary:#f0ede8; --text-secondary:#9e9b96; --text-muted:#6b6760; --accent:#D4A835; --accent-hover:#C49A2A; --accent-text:#ffffff; --shadow:0 1px 3px rgba(0,0,0,0.3),0 2px 8px rgba(0,0,0,0.2); }
+        html { font-size:15px; line-height:1.6; }
+        body { font-family:var(--font-body); background:var(--bg); color:var(--text-primary); }
+        .header { height:52px; display:flex; align-items:center; justify-content:space-between; padding:0 16px; border-bottom:1px solid var(--border); background:var(--bg); position:sticky; top:0; z-index:100; }
+        .header-brand { font-family:var(--font-ui); font-size:15px; font-weight:600; color:var(--accent); text-decoration:none; }
+        .theme-toggle { font-family:var(--font-ui); font-size:13px; background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:6px 12px; cursor:pointer; color:var(--text-secondary); transition:all 0.15s ease; }
+        .theme-toggle:hover { background:var(--border); }
+        .breadcrumb { font-family:var(--font-ui); font-size:12px; color:var(--text-muted); padding:12px 24px; max-width:800px; margin:0 auto; }
+        .breadcrumb a { color:var(--accent); text-decoration:none; }
+        .landing-content { max-width:800px; margin:0 auto; padding:32px 24px 64px; }
+        .landing-content h1 { font-size:32px; font-weight:700; margin-bottom:24px; line-height:1.3; }
+        .landing-content h2 { font-size:22px; font-weight:600; margin-top:32px; margin-bottom:12px; }
+        .landing-content h3 { font-size:17px; font-weight:600; margin-top:20px; margin-bottom:8px; }
+        .landing-content p { color:var(--text-secondary); margin-bottom:16px; line-height:1.7; }
+        .landing-content ul, .landing-content ol { margin: 0 0 16px 24px; color:var(--text-secondary); }
+        .landing-content li { margin-bottom:6px; line-height:1.7; }
+        .landing-content code { font-family:var(--font-mono); font-size:13px; background:var(--surface); padding:2px 6px; border-radius:4px; }
+        .cta-box { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:32px; text-align:center; margin:32px 0; }
+        .cta-box h3 { font-family:var(--font-ui); font-size:18px; font-weight:600; margin-bottom:12px; margin-top:0; }
+        .cta-box p { color:var(--text-muted); margin-bottom:16px; }
+        .cta-btn { font-family:var(--font-ui); font-size:15px; font-weight:600; background:var(--accent); color:var(--accent-text); border:none; border-radius:8px; padding:12px 24px; cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.15s ease; }
+        .cta-btn:hover { background:var(--accent-hover); }
+        details { border:1px solid var(--border); border-radius:8px; padding:16px; margin-bottom:8px; }
+        summary { font-family:var(--font-ui); font-weight:500; cursor:pointer; }
+        details p { margin-top:12px; margin-bottom:0; }
+        .related-tools { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; margin:24px 0; }
+        .related-tool-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; transition:all 0.15s ease; }
+        .related-tool-card:hover { box-shadow:var(--shadow); }
+        .related-tool-card .tool-name { font-family:var(--font-ui); font-size:13px; font-weight:600; color:var(--accent); }
+        .related-tool-card .tool-desc { font-family:var(--font-ui); font-size:12px; color:var(--text-muted); margin-top:4px; }
+        .landing-footer { text-align:center; padding:32px 24px; font-family:var(--font-ui); font-size:12px; color:var(--text-muted); border-top:1px solid var(--border); }
+        .more-tools { margin-top:24px; }
+        .more-tools-label { font-family:var(--font-ui); font-size:11px; font-weight:500; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px; }
+        .more-tools-links { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+        .more-tools-links a { font-family:var(--font-ui); font-size:12px; color:var(--accent); text-decoration:none; padding:4px 10px; border:1px solid var(--border); border-radius:6px; }
+        .more-tools-links a:hover { background:var(--surface); }
+        .suite-badge { position:fixed; bottom:16px; right:16px; font-family:var(--font-ui); font-size:11px; color:var(--text-muted); text-decoration:none; }
+        @media (max-width: 768px) { .landing-content h1 { font-size:24px; } .landing-content { padding:24px 16px 48px; } .suite-badge .badge-prefix { display:none; } }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <a href="/" class="header-brand">freecsv2json.app</a>
+    <button class="theme-toggle" id="themeToggle">☀️</button>
+</header>
+
+<nav class="breadcrumb">
+    <a href="/">Home</a> › CSV to JSON for Developers
+</nav>
+
+<article class="landing-content">
+    <h1>CSV to JSON for Developers — API Payloads, Test Fixtures, Seed Data</h1>
+
+    <p>Developers often need to convert CSV (exported from a database dump, spreadsheet, or third-party report) into JSON for API payloads, test fixtures, seed data, or input to a data pipeline. freecsv2json.app is designed exactly for this: paste the CSV, get strict valid JSON instantly, in one of two shapes — array of objects keyed by the header row, or array of arrays for positional data.</p>
+
+    <p>For most API work, the array-of-objects shape is what you want. freecsv2json.app treats the first row as keys and each subsequent row as a record. Empty trailing rows are dropped, values are trimmed (optional), and numeric-looking strings stay as strings (which is what most APIs expect — stricter type inference belongs in the API handler, not the CSV parser).</p>
+
+    <h2>Common developer workflows</h2>
+    <ol>
+        <li><strong>Seed data for tests.</strong> Dump a table to CSV from <code>psql</code>, paste into freecsv2json.app, copy the JSON into your fixtures file. No installing pandas, no jq scripting, no "why isn't my quote escaped" debugging.</li>
+        <li><strong>API request body from spreadsheet.</strong> Product sends you a spreadsheet of records to import. Export as CSV, convert here, POST the resulting JSON to your <code>/bulk-import</code> endpoint.</li>
+        <li><strong>Mock data for frontend.</strong> Paste CSV from a BI tool, switch to "array of objects, pretty-printed", drop the JSON into a Storybook fixture.</li>
+        <li><strong>Inspecting unfamiliar CSV.</strong> Paste a CSV you received, convert to JSON, instantly see the column names, row counts, and any rows with missing values.</li>
+    </ol>
+
+    <h2>Handling messy CSV</h2>
+    <p>freecsv2json.app's parser follows RFC 4180 character-by-character, so these inputs work correctly:</p>
+    <ul>
+        <li>Quoted fields containing the delimiter: <code>"Smith, John"</code></li>
+        <li>Escaped quotes inside a quoted field: <code>"She said ""hi"""</code></li>
+        <li>Multi-line values inside quotes</li>
+        <li>Mixed CRLF and LF line endings</li>
+        <li>Trailing empty line</li>
+        <li>Empty trailing columns</li>
+    </ul>
+    <p>If the parser does detect a malformed input (like an unterminated quote), the error panel shows exactly what went wrong so you can fix it.</p>
+
+    <h2>Tips for developer use</h2>
+    <ul>
+        <li>For JSON to be reused in APIs, leave "Pretty" off to get a minified single-line string — smaller payload, easier to paste into curl.</li>
+        <li>Use the "array of arrays" shape when you need positional access without keys (for example, bulk inserts where column order is fixed).</li>
+        <li>The "trim values" option is on by default; turn it off if trailing whitespace is semantically meaningful in your data.</li>
+    </ul>
+
+    <div class="cta-box">
+        <h3>Try freecsv2json.app — Free, No Sign-Up</h3>
+        <p>Paste CSV, get valid JSON. All processing happens in your browser.</p>
+        <a href="/" class="cta-btn">Open CSV to JSON →</a>
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>Do I need to install anything to convert CSV to JSON as a developer?</summary><p>No. freecsv2json.app runs in any browser, and the entire converter is vanilla JavaScript. No Node.js, no Python, no npm install.</p></details>
+    <details><summary>Will freecsv2json.app parse types (numbers, booleans) for me?</summary><p>No — and that's intentional. All values are strings. Type coercion is context-dependent and belongs in your application code, not the converter.</p></details>
+    <details><summary>Can I get the JSON as an array of arrays instead?</summary><p>Yes. In the Output panel, change Array of objects to Array of arrays. Useful when you want positional data without key repetition.</p></details>
+    <details><summary>How does it handle very long rows?</summary><p>Long individual rows are fine. Very large total files (many tens of megabytes) may slow the browser tab since parsing is in-memory. For TB-scale CSV, reach for jq, Python, or a database.</p></details>
+    <details><summary>What JSON library does freecsv2json.app use?</summary><p>None — it uses the browser's built-in JSON.stringify. The CSV parser is custom, hand-rolled, ~50 lines of vanilla JS.</p></details>
+    <details><summary>Can I pipe freecsv2json.app into a build script?</summary><p>Not directly today. A CLI / serverless API is on the roadmap (see the Pro tier on the homepage).</p></details>
+
+    <h2>More Free Tools from Freesuite</h2>
+    <div class="related-tools">
+        <a href="https://freejsonformatter.app" class="related-tool-card"><div class="tool-name">freejsonformatter.app</div><div class="tool-desc">Validate and pretty-print JSON</div></a>
+        <a href="https://freeregextester.app" class="related-tool-card"><div class="tool-name">freeregextester.app</div><div class="tool-desc">Test regex patterns live</div></a>
+        <a href="https://freesqlformatter.app" class="related-tool-card"><div class="tool-name">freesqlformatter.app</div><div class="tool-desc">Format and beautify SQL</div></a>
+        <a href="https://freediffchecker.app" class="related-tool-card"><div class="tool-name">freediffchecker.app</div><div class="tool-desc">Compare two text blocks</div></a>
+    </div>
+</article>
+
+<footer class="landing-footer">
+    &copy; freecsv2json.app
+    <div class="more-tools">
+        <div class="more-tools-label">More free tools from Freesuite</div>
+        <div class="more-tools-links">
+            <a href="https://freejsonformatter.app">JSON Formatter</a>
+            <a href="https://freesheets.app">Spreadsheets</a>
+            <a href="https://freesqlformatter.app">SQL Formatter</a>
+            <a href="https://freeregextester.app">Regex Tester</a>
+            <a href="https://freediffchecker.app">Diff Checker</a>
+            <a href="https://freecodebeautify.app">Code Beautifier</a>
+            <a href="https://freebase64.app">Base64</a>
+        </div>
+    </div>
+</footer>
+
+<a href="https://freesuite.app" class="suite-badge" target="_blank" rel="noopener">
+    <span class="badge-prefix">by </span>freesuite.app
+</a>
+
+<script>
+(() => {
+    const toggle = document.getElementById('themeToggle');
+    const getTheme = () => localStorage.getItem('suite_theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const apply = (t) => { document.documentElement.classList.toggle('dark', t === 'dark'); toggle.textContent = t === 'dark' ? '🌙' : '☀️'; localStorage.setItem('suite_theme', t); };
+    apply(getTheme());
+    toggle.addEventListener('click', () => apply(document.documentElement.classList.contains('dark') ? 'light' : 'dark'));
+})();
+</script>
+</body>
+</html>

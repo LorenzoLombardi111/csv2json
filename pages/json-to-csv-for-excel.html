@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON to CSV for Excel — Convert API Responses into Spreadsheets</title>
+    <meta name="description" content="Convert JSON API responses to CSV for Excel. Semicolon or comma delimiter, LF or CRLF endings. Browser-based, no uploads.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://freecsv2json.app/pages/json-to-csv-for-excel.html">
+    <meta name="theme-color" content="#faf9f6">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta property="og:title" content="JSON to CSV for Excel — freecsv2json.app">
+    <meta property="og:description" content="Convert JSON API responses to CSV for Excel. Semicolon or comma delimiter, LF or CRLF endings. Browser-based, no uploads.">
+    <meta property="og:image" content="https://freecsv2json.app/og-image.svg">
+    <meta property="og:url" content="https://freecsv2json.app/pages/json-to-csv-for-excel.html">
+    <meta property="og:type" content="article">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JSON to CSV for Excel — freecsv2json.app">
+    <meta name="twitter:description" content="Convert JSON API responses to CSV for Excel. Semicolon or comma delimiter, LF or CRLF endings. Browser-based, no uploads.">
+    <meta name="twitter:image" content="https://freecsv2json.app/og-image.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "JSON to CSV for Excel — Converting API Responses into Spreadsheets",
+        "description": "Convert JSON API responses to CSV for Excel. Semicolon or comma delimiter, LF or CRLF endings. Browser-based, no uploads.",
+        "url": "https://freecsv2json.app/pages/json-to-csv-for-excel.html",
+        "publisher": { "@type": "Organization", "name": "freecsv2json.app", "url": "https://freecsv2json.app/" }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            { "@type": "Question", "name": "My Excel on macOS opens the CSV as one giant column. Why?", "acceptedAnswer": { "@type": "Answer", "text": "Locale mismatch on the delimiter. macOS Excel often expects semicolon. In freecsv2json.app, change the delimiter to ; and re-download." }},
+            { "@type": "Question", "name": "Does freecsv2json.app handle arrays of arrays?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. If your JSON is [[1,2,3],[4,5,6]], it converts to three columns and two rows with no header. Toggle the Header row behaviour in Excel on import as needed." }},
+            { "@type": "Question", "name": "What about single JSON objects (not arrays)?", "acceptedAnswer": { "@type": "Answer", "text": "A single top-level object is treated as an array of one record. You'll get a two-row CSV: header + one data row." }},
+            { "@type": "Question", "name": "My JSON values have commas — will the CSV be broken?", "acceptedAnswer": { "@type": "Answer", "text": "No. freecsv2json.app correctly quotes any value containing a comma, quote, or newline per RFC 4180. Excel reads the quoted CSV correctly." }},
+            { "@type": "Question", "name": "Is any of my JSON sent to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. freecsv2json.app processes everything locally. Safe for JSON containing API keys, customer data, PII, or internal identifiers." }},
+            { "@type": "Question", "name": "Can I convert the CSV back to JSON later?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Paste the CSV back into freecsv2json.app (or use the Swap button) and the tool converts it back — same tool, opposite direction." }}
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://freecsv2json.app/" },
+            { "@type": "ListItem", "position": 2, "name": "JSON to CSV for Excel", "item": "https://freecsv2json.app/pages/json-to-csv-for-excel.html" }
+        ]
+    }
+    </script>
+
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --bg:#faf9f6; --surface:#f4f2ee; --border:#e8e4dd; --text-primary:#1a1917; --text-secondary:#6b6760; --text-muted:#9e9b96; --accent:#C49A2A; --accent-hover:#A8831F; --accent-text:#ffffff; --shadow:0 1px 3px rgba(0,0,0,0.06),0 2px 8px rgba(0,0,0,0.04); --font-body:'Lora',serif; --font-ui:'DM Sans',sans-serif; --font-mono:'JetBrains Mono',monospace; }
+        html.dark { --bg:#141412; --surface:#1e1c1a; --border:#2e2b27; --text-primary:#f0ede8; --text-secondary:#9e9b96; --text-muted:#6b6760; --accent:#D4A835; --accent-hover:#C49A2A; --accent-text:#ffffff; --shadow:0 1px 3px rgba(0,0,0,0.3),0 2px 8px rgba(0,0,0,0.2); }
+        html { font-size:15px; line-height:1.6; }
+        body { font-family:var(--font-body); background:var(--bg); color:var(--text-primary); }
+        .header { height:52px; display:flex; align-items:center; justify-content:space-between; padding:0 16px; border-bottom:1px solid var(--border); background:var(--bg); position:sticky; top:0; z-index:100; }
+        .header-brand { font-family:var(--font-ui); font-size:15px; font-weight:600; color:var(--accent); text-decoration:none; }
+        .theme-toggle { font-family:var(--font-ui); font-size:13px; background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:6px 12px; cursor:pointer; color:var(--text-secondary); transition:all 0.15s ease; }
+        .theme-toggle:hover { background:var(--border); }
+        .breadcrumb { font-family:var(--font-ui); font-size:12px; color:var(--text-muted); padding:12px 24px; max-width:800px; margin:0 auto; }
+        .breadcrumb a { color:var(--accent); text-decoration:none; }
+        .landing-content { max-width:800px; margin:0 auto; padding:32px 24px 64px; }
+        .landing-content h1 { font-size:32px; font-weight:700; margin-bottom:24px; line-height:1.3; }
+        .landing-content h2 { font-size:22px; font-weight:600; margin-top:32px; margin-bottom:12px; }
+        .landing-content p { color:var(--text-secondary); margin-bottom:16px; line-height:1.7; }
+        .landing-content ol, .landing-content ul { margin: 0 0 16px 24px; color:var(--text-secondary); }
+        .landing-content li { margin-bottom:6px; line-height:1.7; }
+        .landing-content code { font-family:var(--font-mono); font-size:13px; background:var(--surface); padding:2px 6px; border-radius:4px; }
+        .cta-box { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:32px; text-align:center; margin:32px 0; }
+        .cta-box h3 { font-family:var(--font-ui); font-size:18px; font-weight:600; margin-bottom:12px; margin-top:0; }
+        .cta-box p { color:var(--text-muted); margin-bottom:16px; }
+        .cta-btn { font-family:var(--font-ui); font-size:15px; font-weight:600; background:var(--accent); color:var(--accent-text); border:none; border-radius:8px; padding:12px 24px; cursor:pointer; text-decoration:none; display:inline-block; transition:all 0.15s ease; }
+        .cta-btn:hover { background:var(--accent-hover); }
+        details { border:1px solid var(--border); border-radius:8px; padding:16px; margin-bottom:8px; }
+        summary { font-family:var(--font-ui); font-weight:500; cursor:pointer; }
+        details p { margin-top:12px; margin-bottom:0; }
+        .related-tools { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; margin:24px 0; }
+        .related-tool-card { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:16px; text-decoration:none; transition:all 0.15s ease; }
+        .related-tool-card:hover { box-shadow:var(--shadow); }
+        .related-tool-card .tool-name { font-family:var(--font-ui); font-size:13px; font-weight:600; color:var(--accent); }
+        .related-tool-card .tool-desc { font-family:var(--font-ui); font-size:12px; color:var(--text-muted); margin-top:4px; }
+        .landing-footer { text-align:center; padding:32px 24px; font-family:var(--font-ui); font-size:12px; color:var(--text-muted); border-top:1px solid var(--border); }
+        .more-tools { margin-top:24px; }
+        .more-tools-label { font-family:var(--font-ui); font-size:11px; font-weight:500; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:12px; }
+        .more-tools-links { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+        .more-tools-links a { font-family:var(--font-ui); font-size:12px; color:var(--accent); text-decoration:none; padding:4px 10px; border:1px solid var(--border); border-radius:6px; }
+        .more-tools-links a:hover { background:var(--surface); }
+        .suite-badge { position:fixed; bottom:16px; right:16px; font-family:var(--font-ui); font-size:11px; color:var(--text-muted); text-decoration:none; }
+        @media (max-width: 768px) { .landing-content h1 { font-size:24px; } .landing-content { padding:24px 16px 48px; } .suite-badge .badge-prefix { display:none; } }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <a href="/" class="header-brand">freecsv2json.app</a>
+    <button class="theme-toggle" id="themeToggle">☀️</button>
+</header>
+
+<nav class="breadcrumb">
+    <a href="/">Home</a> › JSON to CSV for Excel
+</nav>
+
+<article class="landing-content">
+    <h1>JSON to CSV for Excel — Converting API Responses into Spreadsheets</h1>
+
+    <p>Excel has no native "import JSON" flow for most users. If someone sends you JSON — a raw API response, a webhook payload, a configuration dump — and you need it in a spreadsheet, you need to convert it to CSV first. freecsv2json.app does exactly that, in your browser, without uploading anything.</p>
+
+    <p>Paste your JSON (an array of objects works best), switch to "JSON → CSV" mode, and pick your options. Excel on macOS and most non-English locales expects semicolons as the delimiter and Windows Excel prefers CRLF line endings — freecsv2json.app supports both so the output opens correctly in your version of Excel.</p>
+
+    <h2>Step-by-step</h2>
+    <ol>
+        <li><strong>Copy the JSON.</strong> Whether from a browser dev tools Network tab, a Postman response, or a file.</li>
+        <li><strong>Open freecsv2json.app</strong> and paste into the left pane. If the JSON starts with <code>[</code> or <code>{</code>, the tool auto-switches to JSON → CSV mode.</li>
+        <li><strong>Pick your delimiter.</strong> Comma is standard; semicolon is common in European Excel installations.</li>
+        <li><strong>Pick your line endings.</strong> CRLF for Windows Excel, LF for Mac Excel or Google Sheets import.</li>
+        <li><strong>Click Download.</strong> A <code>.csv</code> file appears in your Downloads folder.</li>
+        <li><strong>Open in Excel.</strong> Double-click the file, or drag into an open Excel workbook.</li>
+    </ol>
+
+    <h2>Handling nested JSON</h2>
+    <p>Excel expects flat rows with one value per cell. If your JSON has nested objects or arrays inside values, freecsv2json.app preserves them by JSON-stringifying the nested content. That way nothing is lost, and if you need to re-expand a column later you can split it in Excel or feed it back through the converter.</p>
+
+    <p>For deeply nested data where each record has different keys, flatten your JSON first (or use a tool like jq) before pasting. freecsv2json.app collects the union of all top-level keys across all records as the header row.</p>
+
+    <div class="cta-box">
+        <h3>Try freecsv2json.app — Free, No Sign-Up</h3>
+        <p>Paste JSON, download Excel-ready CSV. All processing happens in your browser.</p>
+        <a href="/" class="cta-btn">Open CSV ↔ JSON →</a>
+    </div>
+
+    <h2>Frequently Asked Questions</h2>
+    <details><summary>My Excel on macOS opens the CSV as one giant column. Why?</summary><p>Locale mismatch on the delimiter. macOS Excel often expects semicolon. In freecsv2json.app, change the delimiter to ; and re-download.</p></details>
+    <details><summary>Does freecsv2json.app handle arrays of arrays?</summary><p>Yes. If your JSON is [[1,2,3],[4,5,6]], it converts to three columns and two rows with no header. Toggle the Header row behaviour in Excel on import as needed.</p></details>
+    <details><summary>What about single JSON objects (not arrays)?</summary><p>A single top-level object is treated as an array of one record. You'll get a two-row CSV: header + one data row.</p></details>
+    <details><summary>My JSON values have commas — will the CSV be broken?</summary><p>No. freecsv2json.app correctly quotes any value containing a comma, quote, or newline per RFC 4180. Excel reads the quoted CSV correctly.</p></details>
+    <details><summary>Is any of my JSON sent to a server?</summary><p>No. freecsv2json.app processes everything locally. Safe for JSON containing API keys, customer data, PII, or internal identifiers.</p></details>
+    <details><summary>Can I convert the CSV back to JSON later?</summary><p>Yes. Paste the CSV back into freecsv2json.app (or use the Swap button) and the tool converts it back — same tool, opposite direction.</p></details>
+
+    <h2>More Free Tools from Freesuite</h2>
+    <div class="related-tools">
+        <a href="https://freesheets.app" class="related-tool-card"><div class="tool-name">freesheets.app</div><div class="tool-desc">Full spreadsheet editor</div></a>
+        <a href="https://freejsonformatter.app" class="related-tool-card"><div class="tool-name">freejsonformatter.app</div><div class="tool-desc">Validate and pretty-print JSON</div></a>
+        <a href="https://freeunitconvert.app" class="related-tool-card"><div class="tool-name">freeunitconvert.app</div><div class="tool-desc">Unit converter</div></a>
+        <a href="https://freewordcounter.app" class="related-tool-card"><div class="tool-name">freewordcounter.app</div><div class="tool-desc">Word counter</div></a>
+    </div>
+</article>
+
+<footer class="landing-footer">
+    &copy; freecsv2json.app
+    <div class="more-tools">
+        <div class="more-tools-label">More free tools from Freesuite</div>
+        <div class="more-tools-links">
+            <a href="https://freesheets.app">Spreadsheets</a>
+            <a href="https://freejsonformatter.app">JSON Formatter</a>
+            <a href="https://freewordcounter.app">Word Counter</a>
+            <a href="https://freeunitconvert.app">Unit Converter</a>
+            <a href="https://freebase64.app">Base64</a>
+            <a href="https://freesqlformatter.app">SQL Formatter</a>
+            <a href="https://freediffchecker.app">Diff Checker</a>
+        </div>
+    </div>
+</footer>
+
+<a href="https://freesuite.app" class="suite-badge" target="_blank" rel="noopener">
+    <span class="badge-prefix">by </span>freesuite.app
+</a>
+
+<script>
+(() => {
+    const toggle = document.getElementById('themeToggle');
+    const getTheme = () => localStorage.getItem('suite_theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    const apply = (t) => { document.documentElement.classList.toggle('dark', t === 'dark'); toggle.textContent = t === 'dark' ? '🌙' : '☀️'; localStorage.setItem('suite_theme', t); };
+    apply(getTheme());
+    toggle.addEventListener('click', () => apply(document.documentElement.classList.contains('dark') ? 'light' : 'dark'));
+})();
+</script>
+</body>
+</html>

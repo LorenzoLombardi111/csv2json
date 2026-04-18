@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+    <rect width="32" height="32" rx="6" fill="#faf9f6"/>
+    <text x="4" y="14" font-family="'DM Sans', sans-serif" font-size="9" font-weight="700" fill="#C49A2A">CSV</text>
+    <path d="M15 18 L19 15 L19 17 L25 17 L25 19 L19 19 L19 21 Z" fill="#C49A2A"/>
+    <text x="4" y="27" font-family="'DM Sans', sans-serif" font-size="8" font-weight="700" fill="#6b6760">JSON</text>
+</svg>
