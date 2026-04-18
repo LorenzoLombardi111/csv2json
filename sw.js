@@ -6,11 +6,11 @@ const ASSETS = [
     '/favicon.png',
     '/og-image.svg',
     '/manifest.json',
-    '/pages/vs-convertcsv.html',
-    '/pages/vs-csvjsonio.html',
-    '/pages/csv-to-json-for-developers.html',
-    '/pages/json-to-csv-for-excel.html',
-    '/pages/how-to-convert-csv-to-json.html',
+    '/pages/vs-convertcsv',
+    '/pages/vs-csvjsonio',
+    '/pages/csv-to-json-for-developers',
+    '/pages/json-to-csv-for-excel',
+    '/pages/how-to-convert-csv-to-json',
 ];
 
 self.addEventListener('install', (e) => {

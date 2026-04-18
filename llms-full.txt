@@ -60,7 +60,7 @@ Up to about 10 MB of CSV runs smoothly in most browsers. Beyond that, the tab ma
 
 ---
 
-## vs ConvertCSV.com (https://freecsv2json.app/pages/vs-convertcsv.html)
+## vs ConvertCSV.com (https://freecsv2json.app/pages/vs-convertcsv)
 
 ### freecsv2json.app vs ConvertCSV.com — Which free CSV to JSON converter is better?
 
@@ -109,7 +109,7 @@ freecsv2json.app stores nothing server-side — only an optional 100 KB crash-re
 
 ---
 
-## vs csvjson.io (https://freecsv2json.app/pages/vs-csvjsonio.html)
+## vs csvjson.io (https://freecsv2json.app/pages/vs-csvjsonio)
 
 ### freecsv2json.app vs csvjson.io — Head-to-head comparison
 
@@ -157,7 +157,7 @@ Not yet, in either tool. freecsv2json.app's pure conversion functions are writte
 
 ---
 
-## CSV to JSON for Developers (https://freecsv2json.app/pages/csv-to-json-for-developers.html)
+## CSV to JSON for Developers (https://freecsv2json.app/pages/csv-to-json-for-developers)
 
 ### Turning spreadsheet exports into API-ready JSON
 
@@ -216,7 +216,7 @@ Not directly today. A CLI / serverless API is on the roadmap (see the Pro tier o
 
 ---
 
-## JSON to CSV for Excel (https://freecsv2json.app/pages/json-to-csv-for-excel.html)
+## JSON to CSV for Excel (https://freecsv2json.app/pages/json-to-csv-for-excel)
 
 ### Converting JSON API responses into CSV for Excel
 
@@ -261,7 +261,7 @@ Yes. Paste the CSV back into freecsv2json.app (or use the Swap button) and the t
 
 ---
 
-## How to Convert CSV to JSON — Step-by-Step Guide (https://freecsv2json.app/pages/how-to-convert-csv-to-json.html)
+## How to Convert CSV to JSON — Step-by-Step Guide (https://freecsv2json.app/pages/how-to-convert-csv-to-json)
 
 ### A complete walkthrough
 

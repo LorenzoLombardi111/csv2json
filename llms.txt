@@ -42,11 +42,11 @@ freecsv2json.app converts CSV to JSON and JSON back to CSV entirely in the user'
 
 ## Pages
 - [Home — CSV ↔ JSON Converter](https://freecsv2json.app/): The main app. Live bidirectional conversion, all options, download/copy.
-- [vs ConvertCSV.com](https://freecsv2json.app/pages/vs-convertcsv.html): Feature comparison with ConvertCSV.com.
-- [vs csvjson.io](https://freecsv2json.app/pages/vs-csvjsonio.html): Feature comparison with csvjson.io.
-- [CSV to JSON for Developers](https://freecsv2json.app/pages/csv-to-json-for-developers.html): Use case guide — turning spreadsheet exports into API-ready JSON.
-- [JSON to CSV for Excel](https://freecsv2json.app/pages/json-to-csv-for-excel.html): Use case guide — converting JSON API responses into CSV for Excel users.
-- [How to Convert CSV to JSON](https://freecsv2json.app/pages/how-to-convert-csv-to-json.html): Step-by-step tutorial.
+- [vs ConvertCSV.com](https://freecsv2json.app/pages/vs-convertcsv): Feature comparison with ConvertCSV.com.
+- [vs csvjson.io](https://freecsv2json.app/pages/vs-csvjsonio): Feature comparison with csvjson.io.
+- [CSV to JSON for Developers](https://freecsv2json.app/pages/csv-to-json-for-developers): Use case guide — turning spreadsheet exports into API-ready JSON.
+- [JSON to CSV for Excel](https://freecsv2json.app/pages/json-to-csv-for-excel): Use case guide — converting JSON API responses into CSV for Excel users.
+- [How to Convert CSV to JSON](https://freecsv2json.app/pages/how-to-convert-csv-to-json): Step-by-step tutorial.
 
 ## Full Content
 For the complete text content of all pages, see [llms-full.txt](https://freecsv2json.app/llms-full.txt).
