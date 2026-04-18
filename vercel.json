@@ -3,6 +3,9 @@
     "outputDirectory": ".",
     "cleanUrls": true,
     "trailingSlash": false,
+    "analytics": {
+        "enabled": true
+    },
     "headers": [
         {
             "source": "/(.*)",
